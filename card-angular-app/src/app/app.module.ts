@@ -47,7 +47,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-<<<<<<< HEAD
     MatCheckboxModule,
     MatCheckboxModule,
     MatButtonModule,
@@ -79,10 +78,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatTableModule,
     MatSortModule,
     MatPaginatorModule
-
-=======
-    MatButtonModule
->>>>>>> 9d57cd939c3901b780c1461d643acf67a88cfe18
   ],
   providers: [],
   bootstrap: [AppComponent]
