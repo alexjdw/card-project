@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/awildtechno/card-project/issues"
   },
-  "homepage": "https://github.com/awildtechno/card-project#readme"
+  "homepage": "https://github.com/awildtechno/card-project#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
 }
