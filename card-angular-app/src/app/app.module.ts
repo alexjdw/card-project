@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {MatButtonModule} from '@angular/material/button';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatCheckboxModule} from '@angular/material';
@@ -46,6 +47,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+<<<<<<< HEAD
     MatCheckboxModule,
     MatCheckboxModule,
     MatButtonModule,
@@ -78,6 +80,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatSortModule,
     MatPaginatorModule
 
+=======
+    MatButtonModule
+>>>>>>> 9d57cd939c3901b780c1461d643acf67a88cfe18
   ],
   providers: [],
   bootstrap: [AppComponent]
