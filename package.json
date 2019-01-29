@@ -16,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/awildtechno/card-project/issues"
   },
-  "homepage": "https://github.com/awildtechno/card-project#readme"
+  "homepage": "https://github.com/awildtechno/card-project#readme",
+  "dependencies": {
+    "@angular/animations": "^7.2.2",
+    "@angular/cdk": "^7.3.0",
+    "@angular/material": "^7.3.0"
+  }
 }
