@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var fs = require('fs');
 var path = require("path");
 
-mongoose.connect('mongodb://localhost/restful_tasks');
+mongoose.connect('mongodb://localhost/mean_project');
 
 var models_path = path.join(__dirname, './../models');
 
