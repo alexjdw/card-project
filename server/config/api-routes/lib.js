@@ -1,3 +1,7 @@
+function isDict(v) {
+    return a.constructor == Object;
+}
+
 /** respond_with_json(error, results, response, context)
         error: any
             Pass in the mongoose "err" variable here.
@@ -54,83 +58,25 @@ function checkObjIsSubsetOfSchema(obj, schema) {
 }
 
 
-/** checkObjExactlyImplementsSchema(obj, schema) -> boolean
-    Confirms that an object exactly matches a schema. If true, obj can be used to create an instance of schema directly without trimming any extra data. */
-function checkObjExactlyImplementsSchema(obj, schema) {
-    return checkObjIsSubsetOfSchema(obj, schema) && checkObjIsSubsetOfSchema(schema, obj)
+/** checkObjHasRequiredPaths(obj, schema) -> boolean
+    Confirms that an object has all the required paths from a schema's requiredPaths array. If true, obj can be used to create an instance of schema directly without trimming any extra data. */
+function checkObjHasRequiredPaths(obj, paths) {
+    for (let path in paths) {
+        path = paths[path].split('.');
+        
+        var runner = obj;
+        for (p in path) {
+            runner = runner[path[p]]
+            if (runner === undefined) {
+                return false;
+            }
+        }
+    }
+    return true;
 }
 
 module.exports = {
-    checkObjExactlyImplementsSchema: checkObjExactlyImplementsSchema,
+    checkObjHasRequiredPaths: checkObjHasRequiredPaths,
     checkObjIsSubsetOfSchema: checkObjIsSubsetOfSchema,
     respondWithJson: respondWithJson
 }
-
-// //quick tests
-// function assert(test, message) {
-//     if (!test) { 
-//         console.log(message)
-//      }
-// }
-// var schema1 = {name: String, list: [String]}
-// var works = {name: "Alex", list: []}
-// var failboth = {body: "b"}
-// var fail1 = {list: []}
-
-// var nestedschema = {name: {taco: ''}}
-// var nestedwin = {name: {taco: 'Taco!'}}
-
-// var complex = {
-//     a: {aa: {aaa: String}},
-//     b: {bb: {bbb: []}},
-//     c: [],
-//     d: String
-//     }
-// var complexwin =
-//     {
-//     a: {aa: {aaa: ''}},
-//     b: {bb: {bbb: []}},
-//     c: [],
-//     d: ''
-//     }
-
-// var complexfail = {
-//     a: {aa: ''},
-//     b: {bb: {bbb: []}},
-//     c: [],
-//     d: ''
-//     }
-
-// var complexfail2 = {
-//     a: {aa: {aaa: ''}},
-//     b: {bb: {bbb: ''}},
-//     c: [],
-//     d: ''
-//     }
-
-// assert(checkObjExactlyImplementsSchema(works, schema1),
-//     "works should pass checkObjExactlyImplementsSchema");
-
-// assert(!checkObjExactlyImplementsSchema(fail1, schema1),
-//     "fail1 should fail checkObjExactlyImplementsSchema");
-
-// assert(checkObjIsSubsetOfSchema(fail1, schema1),
-//     "fail1 should pass checkObjIsSubsetOfSchema");
-
-// assert(!checkObjIsSubsetOfSchema(failboth, schema1),
-//     "failboth should fail checkObjIsSubsetOfSchema")
-
-// assert(!checkObjExactlyImplementsSchema(fail1, nestedschema),
-//     "fail1 should fail checkObjExactlyImplementsSchema");
-
-// assert(checkObjExactlyImplementsSchema(nestedwin, nestedschema),
-//     "nestedwin should pass checkObjExactlyImplementsSchema");
-
-// assert(checkObjExactlyImplementsSchema(complexwin, complex),
-//     "complexwin should pass checkObjExactlyImplementsSchema")
-
-// assert(!checkObjExactlyImplementsSchema(complexfail, complex),
-//     "complexfail should fail checkObjExactlyImplementsSchema")
-
-// assert(!checkObjExactlyImplementsSchema(complexfail2, complex),
-//     "complexfail2 should fail checkObjExactlyImplementsSchema")

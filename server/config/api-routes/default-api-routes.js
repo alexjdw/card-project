@@ -1,6 +1,7 @@
 /**
     Usage: 
-    - Make your Mongoose model.
+    - Make your Mongoose schema.
+    - Add a model.
     - Add it to module.exports in your models.js file under the API section.
     - Done! API for that model should be working immediately.
     test by going to /api/yourmodelname. You should get at least a response of {}.
@@ -9,10 +10,12 @@
 */
 
 var models = require('../../models/models.js').api
-var lib = require('./lib')
+var lib = require('./lib.js')
 var respondWithJson = lib.respondWithJson;
 var checkObjIsSubsetOfSchema = lib.checkObjIsSubsetOfSchema
-var checkObjExactlyMatchesSchema = lib.checkObjExactlyMatchesSchema
+var checkObjHasRequiredPaths = lib.checkObjHasRequiredPaths
+
+
 /** register_api_routes(app)
 * app: expressjs App object
 * 
@@ -35,13 +38,14 @@ For each model, these routes will be exposed: (routes start with api/<modelname>
     /api/<model>/:id [DELETE]
         Delete document by ID. */
 function register_api_routes(app) {
-    for (model of models) {
+    for (model in models) {
         /** GET -- Get all documents for model. */
+        console.log("Registering /api/" + model);
+
         app.get('/api/' + model, function(request, response) {
-            console.log(model);
             models[model].find({}, function(error, results) {
                 respondWithJson(error, results, response,
-                    context: {model: model, action: "GET (all)"})
+                    {model: model, action: "GET"});
             });
         });
 
@@ -49,23 +53,23 @@ function register_api_routes(app) {
         app.get('/api/' + model + '/:id', function(request, response) {
             models[model].findById(request.params.id, function(error, results) {
                 respondWithJson(error, results, response,
-                    context: {model: model, action: "GET", id: request.params.id})
+                    {model: model, action: "GET", id: request.params.id})
             });
         });
         
         /** POST -- Create a new doucment. */
         app.post('/api/' + model, function(request, response) {
-
-            if (!checkObjExactlyMatchesSchema(request.body, models[model].schema.obj)) {
+            if (!checkObjHasRequiredPaths(request.body, models[model].schema.requiredPaths())) {
                 response.status(400).json({
-                    error:"Create request missing parameters. You must implement all model parameters. If the parameter is an array, please at least include an empty array.",
+                    error: "Create request missing parameters. You must implement all model parameters. If the parameter is an array, please at least include an empty array.",
                     required_schema: models[model].schema.obj,
-                    request: request.body);
+                    request: request.body});
+                return;
             }
 
             models[model].create(request.body, function(error, results) {
                 respondWithJson(error, results, response,
-                    context: {model: model, action: "POST", data: request.body});
+                    {model: model, action: "POST", data: request.body});
             });
         });
 
@@ -82,7 +86,7 @@ function register_api_routes(app) {
 
             models[model].updateOne({ _id: request.params.id }, { $set: request.body }, function(error, results) {
                 respondWithJson(error, results, response,
-                    context: {model: model, action: "PUT", id: request.params.id, data: request.body});
+                    {model: model, action: "PUT", id: request.params.id, data: request.body});
             });
         });
 
@@ -90,10 +94,10 @@ function register_api_routes(app) {
         app.delete('/api/' + model + '/:id', function(request, response) {
             models[model].deleteOne({ _id: request.params.id }, function(error, results) {
                 respondWithJson(error, results, response,
-                    context: {model: model, action: "DELETE", id: request.params.id});
+                    {model: model, action: "DELETE", id: request.params.id});
             });
         });
     }
 }
 
-module.exports.routes = register_api_routes
+module.exports = register_api_routes
