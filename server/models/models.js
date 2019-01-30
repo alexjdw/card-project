@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/mean_project');
 
 
-cardSchema = new mongoose.Schema({
+CardTemplateSchema = new mongoose.Schema({
     input_fields: [{ //This is for the form
         field_name: {
             type: String,
@@ -19,7 +19,6 @@ cardSchema = new mongoose.Schema({
         required: true
     },
     other_images: [{
-        //Maybe the user can upload more images?
         name: String,
         url: String
     }],
@@ -28,32 +27,61 @@ cardSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    times_created: {
+    created_count: {
         type: Number,
         default: 0
     },
 });
 
-
-userCreatedCard = new mongoose.Schema({
+Card = new mongoose.Schema({
     creator: {
-
+        type: String,
+        required: true
     },
+    template: {
+        type: mongoose.Schema.types.ObjectId,
+        required: true
+    }
     sent: {
         type: Boolean,
         default: false
     },
-    data: {
-
+    form_data: {
+        type: Object,
+        required: true
     },
     recipient_emails: {
-
+        type: [String]
     }
 });
+
+UserSchema = new mongoose.Schema({
+    email: {
+        type: String,
+        required: true
+    },
+    hashed_pw: {
+        type: String,
+    },
+    card_templates: {
+        type: [{type: mongoose.Schema.types.ObjectId, ref="CardTemplate"}]
+    },
+    saved_cards: {
+        type: [{type: mongoose.Schema.types.ObjectId, ref="Card"}]
+    },
+    sent_cards: {
+        type: [{type: mongoose.Schema.types.ObjectId, ref="Card"}]
+    }
+});
+
+mongoose.model('CardTemplate', CardTemplateSchema);
+mongoose.model('User', UserSchema);
+mongoose.model('Card', Card);
 
 
 module.exports = {
     CardTemplate: mongoose.model('CardTemplate'),
+    User: mongoose.model('User')
 
     api: {
         /** Models that you want to expose an API for go here AND in the first level of the exports object. They can have different names.
