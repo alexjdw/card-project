@@ -9,3 +9,17 @@
     vertical-align: top;
   }
   
+  .create-form-wrapper {
+    position: absolute;
+    top: 0;
+    z-index: 0;
+    padding-top: rem;
+    background-image: url(/assets/img/wall.jpg);
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+  }
+
+  .create-form-wrapper div {
+    flex: 2;
+  }
