@@ -17,3 +17,47 @@ div.mat-step-icon-state-number {
   display: none !important;
   opacity: 0;
 }
+
+.mat-horizontal-stepper-header {
+  margin: 2rem 1rem;
+  min-height: 10rem;
+  width: 16rem;
+  z-index: 1000;
+}
+
+.mat-horizontal-stepper-header-container {
+  position: absolute;
+  bottom: 0;
+  opacity: .75;
+  transition: opacity .2s ease-in-out;
+  width: 66%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  z-index: 1000;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.mat-horizontal-content-container {
+  display: absolute;
+  top: 0;
+}
+
+.floaty-email {
+  position: absolute;
+  top: 50%;  /* position the top  edge of the element at the middle of the parent */
+  left: 50%; /* position the left edge of the element at the middle of the parent */
+  transform: translate(-50%, -50%);
+  background-color: #6c757df3;
+  padding: .5rem 1rem;
+  border-radius: 8px;
+  font-size: larger;
+  z-index: 1000;
+}
+
+.floaty-email .mat-form-field {
+  min-width: 20rem;
+  max-width: 80%;
+}

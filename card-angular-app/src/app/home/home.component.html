@@ -1,33 +1,31 @@
 <!-- video carousel not working  -->
+<div class="floaty-email">
+  <mat-form-field>
+    <input matInput placeholder="Enter your email" required>
+    <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+  </mat-form-field>
+</div>
 <mat-horizontal-stepper [linear]="isLinear" #stepper>
   <mat-step [stepControl]="step1">
-      <ng-template matStepLabel>
-        <img class="w-100" src="https://www.bbsocal.com/wp-content/uploads/2018/05/image-placeholder.png">
-      </ng-template>
-      <img class="w-100" src="https://www.bbsocal.com/wp-content/uploads/2018/05/image-placeholder.png">
+    
+    <img class="w-100" src="/assets/img/xmas1.jpg">
+    <ng-template matStepLabel>
+      <img class="w-100" src="/assets/img/xmas1.jpg">
+    </ng-template>
   </mat-step>
   <mat-step [stepControl]="step2">
+    <img class="w-100" src="https://www.bbsocal.com/wp-content/uploads/2018/05/image-placeholder.png">
     <ng-template matStepLabel>
       <img class="w-100" src="https://www.bbsocal.com/wp-content/uploads/2018/05/image-placeholder.png">
     </ng-template>
-    <img class="w-100" src="https://www.bbsocal.com/wp-content/uploads/2018/05/image-placeholder.png">
   </mat-step>
   <mat-step [stepControl]="step3">
+    <img class="w-100" src="https://www.bbsocal.com/wp-content/uploads/2018/05/image-placeholder.png">
     <ng-template matStepLabel>
       <img class="w-100" src="https://www.bbsocal.com/wp-content/uploads/2018/05/image-placeholder.png">
     </ng-template>
-    <img class="w-100" src="https://www.bbsocal.com/wp-content/uploads/2018/05/image-placeholder.png">
   </mat-step>
 </mat-horizontal-stepper>
-
-
-
-  <div class="example-container">
-    <mat-form-field>
-      <input matInput placeholder="Enter your email" required>
-      <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
-    </mat-form-field>
-  </div>
 
 
 
