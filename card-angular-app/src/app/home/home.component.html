@@ -1,4 +1,6 @@
-<mat-horizontal-stepper linear #stepper>
+<div style = 'background-image: url("../assets/img/wall4.jpg");'>
+<!-- <div background="http://wallpapersexpert.com/data/out/11/3362210-bubble-wallpapers.jpg"> -->
+  <mat-horizontal-stepper linear #stepper>
     <mat-step [stepControl]="firstFormGroup" errorMessage="Name is required.">
       <form [formGroup]="firstFormGroup">
         <ng-template matStepLabel>Name:</ng-template>
@@ -32,4 +34,49 @@
       </div>
     </mat-step>
   </mat-horizontal-stepper>
-  
+
+  <div class="slide_block">
+    <h1 class="text-success">Most Popular eCards!!!</h1>
+    <div id="demo" class="carousel slide" data-ride="carousel">
+
+      <!-- Indicators -->
+      <ul class="carousel-indicators">
+        <li data-target="#demo" data-slide-to="0" class="active"></li>
+        <li data-target="#demo" data-slide-to="1"></li>
+        <li data-target="#demo" data-slide-to="2"></li>
+        <li data-target="#demo" data-slide-to="3"></li>
+        <li data-target="#demo" data-slide-to="4"></li>
+        <li data-target="#demo" data-slide-to="5"></li>
+      </ul>
+
+      <!-- The slideshow -->
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <a href="/cards/collection"><img src="../assets/img/birthday/b15.gif" alt="Los Angeles"></a>
+        </div>
+        <div class="carousel-item">
+          <a href="/cards/collection"><img src="../assets/img/birthday/b14.gif" alt="Chicago"></a>
+        </div>
+        <div class="carousel-item">
+          <a href="/cards/collection"><img src="../assets/img/birthday/b13.gif" alt="New York"></a>
+        </div>
+        <div class="carousel-item">
+          <a href="/cards/collection"><img src="../assets/img/birthday/b12.gif" alt="Los Angeles"></a>
+        </div>
+        <div class="carousel-item">
+          <a href="/cards/collection"><img src="../assets/img/birthday/b11.gif" alt="Chicago"></a>
+        </div>
+        <div class="carousel-item">
+          <a href="/cards/collection"><img src="../assets/img/birthday/b10.gif" alt="New York"></a>
+        </div>
+      </div>
+
+      <!-- Left and right controls -->
+      <a class="carousel-control-prev" href="#demo" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </a>
+      <a class="carousel-control-next" href="#demo" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </a>
+    </div>
+  </div>
