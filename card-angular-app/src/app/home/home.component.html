@@ -1,23 +1,27 @@
 <!-- video carousel not working  -->
-<!-- <mdb-carousel class="carousel slide carousel-fade" [animation]="'fade'">
-    <mdb-carousel-item>
-      <video class="video-fluid" autoplay loop muted>
-        <source src="https://mdbootstrap.com/img/video/Tropical.mp4" type="video/mp4" />
-      </video>
-    </mdb-carousel-item>
-    <mdb-carousel-item>
-      <video class="video-fluid" autoplay loop muted>
-        <source src="https://mdbootstrap.com/img/video/forest.mp4" type="video/mp4" />
-      </video>
-    </mdb-carousel-item>
-    <mdb-carousel-item>
-      <video class="video-fluid" autoplay loop muted>
-        <source src="https://mdbootstrap.com/img/video/Tropical.mp4" type="video/mp4" />
-      </video>
-    </mdb-carousel-item>
-  </mdb-carousel> -->
+<mat-horizontal-stepper [linear]="isLinear" #stepper>
+  <mat-step [stepControl]="step1">
+      <ng-template matStepLabel>
+        <img class="w-100" src="https://www.bbsocal.com/wp-content/uploads/2018/05/image-placeholder.png">
+      </ng-template>
+      <img class="w-100" src="https://www.bbsocal.com/wp-content/uploads/2018/05/image-placeholder.png">
+  </mat-step>
+  <mat-step [stepControl]="step2">
+    <ng-template matStepLabel>
+      <img class="w-100" src="https://www.bbsocal.com/wp-content/uploads/2018/05/image-placeholder.png">
+    </ng-template>
+    <img class="w-100" src="https://www.bbsocal.com/wp-content/uploads/2018/05/image-placeholder.png">
+  </mat-step>
+  <mat-step [stepControl]="step3">
+    <ng-template matStepLabel>
+      <img class="w-100" src="https://www.bbsocal.com/wp-content/uploads/2018/05/image-placeholder.png">
+    </ng-template>
+    <img class="w-100" src="https://www.bbsocal.com/wp-content/uploads/2018/05/image-placeholder.png">
+  </mat-step>
+</mat-horizontal-stepper>
 
-<!-- form not working -->
+
+
   <div class="example-container">
     <mat-form-field>
       <input matInput placeholder="Enter your email" required>
