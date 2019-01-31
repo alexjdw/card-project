@@ -16,6 +16,8 @@ import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 export class BirthdayComponent implements OnInit {
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
+  showEditFormBool = false;
+  listOfCards: any;
 
   constructor(private _httpService: HttpService,
     // private ngFlashMessageService: NgFlashMessageService,
@@ -30,6 +32,22 @@ export class BirthdayComponent implements OnInit {
     this.secondFormGroup = this._formBuilder.group({
       secondCtrl: ['', Validators.required]
     });
+  }
+  // b_getAllCards(){
+  //   var observable = this._httpService.getAllCards();
+  //   observable.subscribe(data =>{
+  //     console.log(data);
+  //     this.listOfCards = data;
+  //   })
+  // }
+  onClickTemplate(){
+    this.showEditFormBool = true;
+    // this._router.navigate(['/cards']);
+  }
+  receivedFromCustomize(event){
+    if(event === true){
+      this.showEditFormBool = false;
+    }
   }
 
 }

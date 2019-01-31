@@ -7,6 +7,10 @@ import { HttpClient } from '@angular/common/http';
 export class HttpService {
     constructor(private _http: HttpClient) { }
 
+    getAllCards(){
+        
+    }
+
     getCardTemplate(template_id) {
         return this._http.get('/api/template/' + template_id);
     }
