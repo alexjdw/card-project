@@ -2,11 +2,11 @@
     Usage: 
     - Make your Mongoose schema.
     - Add a model.
-    - Add it to module.exports in your models.js file under the API section.
+    - Add the model to module.exports in your models.js file under the API section.
     - Done! API for that model should be working immediately.
     test by going to /api/yourmodelname. You should get at least a response of {}.
 
-    Add additoinal API routes in the custom-api-routes.
+    Add additoinal API routes in the custom-api-routes file.
 */
 
 var models = require('../../models/models.js').api
@@ -19,7 +19,7 @@ var checkObjHasRequiredPaths = lib.checkObjHasRequiredPaths
 /** register_api_routes(app)
 * app: expressjs App object
 * 
-* Registers the below API routes with the app. It registers a set of routes for each model included in the modelsjs file under the "api" export path. The api will be available at /api/<model> for each model.
+* Registers the below API routes with the app. It registers a set of routes for each model included in the models.js file under the "api" export path. The api will be available at /api/<model> for each model.
 
 For each model, these routes will be exposed: (routes start with api/<modelname>)
 
@@ -39,9 +39,9 @@ For each model, these routes will be exposed: (routes start with api/<modelname>
         Delete document by ID. */
 function register_api_routes(app) {
     for (model in models) {
-        /** GET -- Get all documents for model. */
         console.log("Registering /api/" + model);
 
+        /** GET -- Get all documents for model. */
         app.get('/api/' + model, function(request, response) {
             models[model].find({}, function(error, results) {
                 respondWithJson(error, results, response,

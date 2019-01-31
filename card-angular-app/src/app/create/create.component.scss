@@ -1,9 +1,11 @@
-.example-container {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .example-container > * {
-    width: 100%;
+  .img-small-choice {
+    display: inline-block;
+    width: 16rem;
+    height: 10rem;
+    background: url(/assets/img/xmas1.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+    vertical-align: top;
   }
   
