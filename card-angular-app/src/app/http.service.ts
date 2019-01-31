@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { DragDropModule } from '@angular/cdk/drag-drop'
 
 @Injectable({
   providedIn: 'root'

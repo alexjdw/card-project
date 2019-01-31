@@ -25,19 +25,39 @@
       </mat-step>
       <mat-step label="Step 2">
         Upload a Background Image:
-        <!-- file fields don't work with Material so I'm just going with the generic one for now -->
         <input type="file">
         <p>OR choose one of ours!</p>
-        <div class="img-small-choice mx-2">
-          &nbsp;
-        </div>
-        <div class="img-small-choice mx-2">
-        </div>
-        <div class="img-small-choice mx-2">
-          &nbsp;
-        </div>
+        <button class="img-small-choice mx-2" matStepperNext>
+        </button>
+        <button class="img-small-choice mx-2" matStepperNext>
+        </button>
+        <button class="img-small-choice mx-2" matStepperNext>
+        </button>
       </mat-step>
       <mat-step label="Step 3">
+        <div>
+          <p>Add a new custom field</p>
+          <mat-form-field>
+            <input matInput type="text" placeholder="Name the field. Example: Signature, Personal Message">
+          </mat-form-field>
+          <p>
+            <mat-button-toggle-group>
+              <mat-button-toggle value="inputfield">Text Field</mat-button-toggle>
+              <mat-button-toggle value="sigfield">Signature Field</mat-button-toggle>
+              <mat-button-toggle value="textareafield">Personal Message Field</mat-button-toggle>
+              <mat-button-toggle value="image">Image</mat-button-toggle>
+            </mat-button-toggle-group>
+          </p>
+          <button mat-raised-button (click)="addCustomComponent">Add</button>
+        </div>
+        <div class="template-editor">
+          <img class="w-100" src="/assets/img/xmas1.jpg">
+          <div class="movable-input-grid">
+            <div class="movable-input" cdkDrag></div>
+            <div class="movable-input" cdkDrag></div>
+            <div class="movable-input" cdkDrag></div>
+          </div>
+        </div>
       </mat-step>
     </mat-vertical-stepper>
   </div>

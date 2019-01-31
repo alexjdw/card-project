@@ -6,6 +6,7 @@ import {HttpService} from './http.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // import {SlideshowModule} from 'ng-simple-slideshow';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -65,6 +66,7 @@ import { FriendshipComponent } from './friendship/friendship.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    DragDropModule,
     MatCheckboxModule,
     MatCheckboxModule,
     MatButtonModule,
