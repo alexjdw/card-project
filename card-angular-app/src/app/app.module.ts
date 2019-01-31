@@ -48,6 +48,7 @@ import { CollectionComponent } from './collection/collection.component';
 import { BirthdayComponent } from './birthday/birthday.component';
 import { ChristmasComponent } from './christmas/christmas.component';
 import { CreateComponent } from './create/create.component';
+import { FriendshipComponent } from './friendship/friendship.component';
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
@@ -57,7 +58,8 @@ import { CreateComponent } from './create/create.component';
     CollectionComponent,
     BirthdayComponent,
     ChristmasComponent,
-    CreateComponent
+    CreateComponent,
+    FriendshipComponent
   ],
   imports: [
     BrowserModule,
