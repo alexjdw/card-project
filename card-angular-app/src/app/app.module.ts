@@ -5,7 +5,7 @@ import {HttpService} from './http.service';
 // import { NgFlashMessagesModule } from 'ng-flash-messages'; // import flash messages module
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import {SlideshowModule} from 'ng-simple-slideshow';
+// import {SlideshowModule} from 'ng-simple-slideshow';
 
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -96,7 +96,7 @@ import { CreateComponent } from './create/create.component';
     MatPaginatorModule,
     HttpClientModule,
     FormsModule,
-    SlideshowModule,
+    // SlideshowModule,
     // NgFlashMessagesModule.forRoot() // add flash message module to the imports array
 
   ],
