@@ -14,8 +14,8 @@ var flash = require('express-flash');
 
 app.use(express.static(path.join(__dirname, '/card-angular-app/dist/card-angular-app')));
 
-// require('/server/config/mongoose.js');
-// require('/server/config/routes.js')(app);
+// require('./server/config/mongoose.js');
+require('./server/config/routes.js')(app);
 
 // this route will be triggered if any of the routes above did not match
 app.all("*", (req, res, next) => {
