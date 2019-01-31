@@ -39,9 +39,9 @@ Card = new mongoose.Schema({
         required: true
     },
     template: {
-        type: mongoose.Schema.types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         required: true
-    }
+    },
     sent: {
         type: Boolean,
         default: false
@@ -64,13 +64,13 @@ UserSchema = new mongoose.Schema({
         type: String,
     },
     card_templates: {
-        type: [{type: mongoose.Schema.types.ObjectId, ref="CardTemplate"}]
+        type: [{type: mongoose.Schema.Types.ObjectId, ref: "CardTemplate"}]
     },
     saved_cards: {
-        type: [{type: mongoose.Schema.types.ObjectId, ref="Card"}]
+        type: [{type: mongoose.Schema.Types.ObjectId, ref: "Card"}]
     },
     sent_cards: {
-        type: [{type: mongoose.Schema.types.ObjectId, ref="Card"}]
+        type: [{type: mongoose.Schema.Types.ObjectId, ref: "Card"}]
     }
 });
 
@@ -81,11 +81,14 @@ mongoose.model('Card', Card);
 
 module.exports = {
     CardTemplate: mongoose.model('CardTemplate'),
-    User: mongoose.model('User')
+    Card: mongoose.model('Card'),
+    User: mongoose.model('User'),
 
     api: {
         /** Models that you want to expose an API for go here AND in the first level of the exports object. They can have different names.
         Note: the key is the API route. So bikes: mongoose.model('SuperDuperBikes') results in an api at /api/bikes */
-        templates: mongoose.model('CardTemplate')
+        templates: mongoose.model('CardTemplate'),
+        cards: mongoose.model('Card'),
+        users: mongoose.model('User')
     }
 }
