@@ -5,12 +5,11 @@
     <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
   </mat-form-field>
 </div>
-<mat-horizontal-stepper [linear]="isLinear" #stepper>
+<mat-horizontal-stepper #stepper class="intro-screen-stepper">
   <mat-step [stepControl]="step1">
-    
-    <img class="w-100" src="/assets/img/xmas1.jpg">
+    <img class="w-100 h-100" src="/assets/img/xmas1.jpg">
     <ng-template matStepLabel>
-      <div class="img-div w-100 h-100" background-image="/assets/img/xmas1.jpg"></div>
+      <img class="w-100" src="/assets/img/xmas1.jpg">
     </ng-template>
   </mat-step>
   <mat-step [stepControl]="step2">

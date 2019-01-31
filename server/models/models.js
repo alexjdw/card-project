@@ -18,6 +18,10 @@ CardTemplateSchema = new mongoose.Schema({
        type: String,
        required: true
    },
+   description: {
+       type: String,
+       required: true
+   },
    other_images: [{
        name: String,
        url: String
@@ -86,7 +90,7 @@ module.exports = {
 
    api: {
        /** Models that you want to expose an API for go here AND in the first level of the exports object. They can have different names.
-       Note: the key is the API route. So bikes: mongoose.model('SuperDuperBikes') results in an api at /api/bikes */
+       Note: the dictionary key is the API route. So bikes: mongoose.model('SuperDuperBikes') results in an api at /api/bikes */
        templates: mongoose.model('CardTemplate'),
        cards: mongoose.model('Card'),
        users: mongoose.model('User')

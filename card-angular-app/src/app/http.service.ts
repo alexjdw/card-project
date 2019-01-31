@@ -5,6 +5,12 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class HttpService {
+    constructor(private _http: HttpClient) { }
 
-  constructor(private _http:HttpClient) { }
+    getCardTemplate(template_id) {
+        return this._http.get('/api/template/' + template_id);
+    }
+    createTemplate(form_data) {
+        return this._http.post('/api/templates/', form_data);
+    }
 }
