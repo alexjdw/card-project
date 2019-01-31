@@ -1,53 +1,35 @@
-<!-- video carousel not working  -->
-<div class="floaty-email">
-  <mat-form-field>
-    <input matInput placeholder="Enter your email" required>
-    <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
-  </mat-form-field>
-</div>
-<mat-horizontal-stepper [linear]="isLinear" #stepper>
-  <mat-step [stepControl]="step1">
-    
-    <img class="w-100" src="/assets/img/xmas1.jpg">
-    <ng-template matStepLabel>
-      <img class="w-100" src="/assets/img/xmas1.jpg">
-    </ng-template>
-  </mat-step>
-  <mat-step [stepControl]="step2">
-    <img class="w-100" src="https://www.bbsocal.com/wp-content/uploads/2018/05/image-placeholder.png">
-    <ng-template matStepLabel>
-      <img class="w-100" src="https://www.bbsocal.com/wp-content/uploads/2018/05/image-placeholder.png">
-    </ng-template>
-  </mat-step>
-  <mat-step [stepControl]="step3">
-    <img class="w-100" src="https://www.bbsocal.com/wp-content/uploads/2018/05/image-placeholder.png">
-    <ng-template matStepLabel>
-      <img class="w-100" src="https://www.bbsocal.com/wp-content/uploads/2018/05/image-placeholder.png">
-    </ng-template>
-  </mat-step>
-</mat-horizontal-stepper>
-
-
-
-
-
-
-<!-- Bootstrap Angular  -->
-<!-- <ngb-carousel *ngIf="images" [showNavigationArrows]="showNavigationArrows" [showNavigationIndicators]="showNavigationIndicators">
-  <ng-template ngbSlide *ngFor="let image of images">
-    <img [src]="image" alt="Random slide">
-    <div class="carousel-caption">
-      <h3>No mouse navigation</h3>
-      <p>This carousel hides navigation arrows and indicators.</p>
-    </div>
-  </ng-template>
-</ngb-carousel>
-
-<hr>
-
-<div class="btn-group" role="group" aria-label="Carousel toggle controls">
-  <button type="button" (click)="showNavigationArrows = !showNavigationArrows" class="btn btn-outline-dark btn-sm">Toggle
-    navigation arrows</button>
-  <button type="button" (click)="showNavigationIndicators = !showNavigationIndicators" class="btn btn-outline-dark btn-sm">Toggle
-    navigation indicators</button>
-</div> -->
+<mat-horizontal-stepper linear #stepper>
+    <mat-step [stepControl]="firstFormGroup" errorMessage="Name is required.">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Name:</ng-template>
+        <mat-form-field>
+          <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup" errorMessage="Address is required.">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Email address:</ng-template>
+        <mat-form-field>
+          <input matInput placeholder="Email" formControlName="secondCtrl" required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      Awesome! You are all set!
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+        <button mat-button (click)="onSubmit()">Submit</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+  
