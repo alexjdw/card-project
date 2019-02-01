@@ -5,6 +5,22 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 
+class CardTemplateCustomInput {
+    constructor() {  }
+    name: string;
+    type: string;
+    options: object;
+}
+
+class CardTemplate {
+    constructor() {  }
+    custom_inputs: [CardTemplateCustomInput];
+    user_name: string;
+    card_name: string;
+    category: string;
+    bg_image: string;
+}
+
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
@@ -16,6 +32,7 @@ import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 export class CreateComponent implements OnInit {
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
+  template: CardTemplate;
 
   constructor(
     private _httpService: HttpService,
@@ -32,5 +49,9 @@ export class CreateComponent implements OnInit {
       secondCtrl: ['', Validators.required]
     });
   }
+
+    addComponent() {
+
+    }
 
 }

@@ -8,7 +8,9 @@
     background-size: 100% 100%;
     vertical-align: top;
   }
-  
+  label {
+    display: block;
+  }
   .create-form-wrapper {
     position: absolute;
     top: 0;
@@ -37,22 +39,66 @@
     .movable-input {
       width: 32rem;
       height: 2.5rem;
-      background-color: #fff;
       border-radius: 8px;
-
     }
 
-    .movable-input::after {
+    .movable-image {
+      width: 20rem;
+    }
+
+    .movable-personal-message {
+      width: 32rem;
+      height: 8rem;
+      border-radius: 8px;
+    }
+
+    .movable-signature-field {
+      width: 32rem;
+      height: 2.5rem;
+      border-radius: 8px;
+    }
+
+    .movable {
+      transition: background-color .2s ease-in-out;
+      background-color: #fff4;
+
+      &:hover {
+        background-color: #fffc;
+        }
+    }
+
+    .movable::after {
         content: "";
-        display: inline-block;
         position: absolute;
         background-image: url('/assets/img/arrows.png');
         background-size: cover;
         width: 2.5rem;
         height: 2.5rem;
-        top: 0;
+        top: 50%;
         left: 50%;
-        transform: translate(-50%, 0%);
+        transform: translate(-50%, -50%);
     }
-    
+  }
+
+  .example {
+    display: inline-block;
+    padding: .5em;
+    border: 2px dotted #6f42c1;
+  }
+
+  img.example {
+    width: 16rem;
+    height: 10rem;
+  }
+
+  .purple {
+    background-color: #6f42c1;
+  }
+
+  input, textarea {
+    min-width: 16rem;
+  }
+
+  .tabgroup-min-height {
+    min-height: 18rem;
   }

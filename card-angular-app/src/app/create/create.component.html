@@ -1,3 +1,5 @@
+<link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
+
 <div class="create-form-wrapper d-flex flex-column">
   <div class="w-75 mx-auto">
     <h3 class="text-success">
@@ -37,28 +39,55 @@
       <mat-step label="Step 3">
         <div>
           <p>Add a new custom field</p>
-          <mat-form-field>
-            <input matInput type="text" placeholder="Name the field. Example: Signature, Personal Message">
-          </mat-form-field>
+          <mat-tab-group class="tabgroup-min-height">
+            <mat-tab label="Banner Text Field">
+              <label class="my-1">Name this field:</label>
+              <mat-form-field>
+                <input matInput type="text">
+              </mat-form-field>
+              <h2 class="example">Happy Holidays!</h2>
+              <small>* When making the card, users won't be able to change this field.</small>
+            </mat-tab>
+            <mat-tab label="Personal Message Field">
+              <label class="my-1">Name this field:</label>
+              <mat-form-field>
+                  <input matInput type="text">
+              </mat-form-field>
+              <label class="my-1">Default Content:</label>
+              <mat-form-field>
+                  <textarea matInput type="text" placeholder="Include some sample text here. People will be able to change the final product."></textarea>
+              </mat-form-field>
+              <p class="example">Merry Christmas to all of your family and friends. We've been up to a lot this year! The treeshouse in the back yard is finally complete, and Jennie spends a lot of time up there with her friends...</p>
+              <small>* Users will be able to fill in their own text for personal messages in their cards.</small>
+
+            </mat-tab>
+            <mat-tab label="Signature Field">
+              <h3 class="example" style="font-family: 'Dancing Script', cursive;">Amanda Thompson</h3>
+              <small>* Users will be able to change the name on the signature.</small>
+            </mat-tab>
+
+            <mat-tab label="Photo">
+              <input type="file" aria-label="Upload an image to include in the card.">
+              <div class="d-inline">
+                <h3>Example:</h3>
+                <img src="/assets/img/example-image.svg" class="example">
+              </div>
+            </mat-tab>
+          </mat-tab-group>
           <p>
-            <mat-button-toggle-group>
-              <mat-button-toggle value="inputfield">Text Field</mat-button-toggle>
-              <mat-button-toggle value="sigfield">Signature Field</mat-button-toggle>
-              <mat-button-toggle value="textareafield">Personal Message Field</mat-button-toggle>
-              <mat-button-toggle value="image">Image</mat-button-toggle>
-            </mat-button-toggle-group>
+            <button mat-button class="purple" (click)="addField()">Add to Card</button>
           </p>
-          <button mat-raised-button (click)="addCustomComponent">Add</button>
         </div>
         <div class="template-editor">
           <img class="w-100" src="/assets/img/xmas1.jpg">
           <div class="movable-input-grid">
-            <div class="movable-input" cdkDrag></div>
-            <div class="movable-input" cdkDrag></div>
-            <div class="movable-input" cdkDrag></div>
+            <img class="movable-image" src="/assets/img/wall2.jpg" cdkDrag>
+            <div class="movable movable-personal-message" cdkDrag></div>
+            <div class="movable movable-signature-field" cdkDrag></div>
+            <div class="movable movable-input" cdkDrag></div>
           </div>
         </div>
       </mat-step>
     </mat-vertical-stepper>
   </div>
-<!-- </div> -->
+</div>
