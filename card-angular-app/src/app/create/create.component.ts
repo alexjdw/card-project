@@ -8,19 +8,26 @@ import { CdkDragMove, CdkDragEnd } from '@angular/cdk/drag-drop';
 
 
 class CardTemplateCustomInput {
-    constructor() { }
-    name: string;
-    type: string;
-    options: object;
+    size: number = 3;
+    font: string;
+    classes: [string];
+
+    constructor(
+        public type: string,
+        public options?: object) {
+            console.log(this.type);
+         }
 }
 
 class CardTemplate {
-    constructor() { }
-    custom_inputs: [CardTemplateCustomInput];
+    custom_inputs: CardTemplateCustomInput[];
     user_name: string;
     card_name: string;
     category: string;
     bg_image: string;
+    constructor() {
+        this.custom_inputs = [];
+     }
 }
 
 @Component({
@@ -32,32 +39,62 @@ class CardTemplate {
   }]
 })
 export class CreateComponent implements OnInit {
-    firstFormGroup: FormGroup;
-    secondFormGroup: FormGroup;
     template: CardTemplate;
-    selectedTab: string;
-  constructor(
-    private _httpService: HttpService,
-    // private ngFlashMessageService: NgFlashMessageService,
-    private _route: ActivatedRoute,
-    private _router: Router,
-    private _formBuilder: FormBuilder) { }
+    selectedTab: string = "Banner Text Field";
+    latestUploadedImgUrl:string = '';
+    form: any;
 
-    ngOnInit() {
-        this.firstFormGroup = this._formBuilder.group({
-        firstCtrl: ['', Validators.required]
-        });
-        this.secondFormGroup = this._formBuilder.group({
-        secondCtrl: ['', Validators.required]
-        });
-    }
+    constructor(
+        private _httpService: HttpService,
+        // private ngFlashMessageService: NgFlashMessageService,
+        private _route: ActivatedRoute,
+        private _router: Router,
+        // private _formBuilder: FormBuilder
+        ) { }
+
+        ngOnInit() {
+            this.template = new CardTemplate();
+            this.form = {
+                username: '',
+                description: '',
+                background_image: '',
+                category: '',
+                innerform: {
+                    bannertext: '>:3',
+                    imageurl: '>:3',
+                    textareadesc: '>:3',
+                }
+            }
+        }
 
     tabChange(event) {
-        this.selectedTab = event.tab.tabLabel;
+        console.log(event);
+        this.selectedTab = event.tab.textLabel;
     }
 
     addField() {
+        if (this.selectedTab === "Banner Text Field") {
+            this.template.custom_inputs.push(new CardTemplateCustomInput('banner', {content: this.form.bannerText}));
+        } else if (this.selectedTab === "Personal Message Field") {
+            this.template.custom_inputs.push(new CardTemplateCustomInput('textarea'));
+        } else if (this.selectedTab === "Signature Field") {
+            this.template.custom_inputs.push();
+        } else if (this.selectedTab === "Photo") {
+            this.template.custom_inputs.push(
+                new CardTemplateCustomInput('image', {url: '/assets/img/wall2.jpg'})
+                );
+        }
+    }
 
+    uploadFileOnChange(event) {
+        var file = event.target.files[0];
+        var uploadData = new FormData();
+        uploadData.append('file', file, file.name);
+
+        this._httpService.uploadTemplateFile(uploadData).subscribe((resp) => {
+            //confirm response here
+            console.log(resp);
+        });
     }
 
     onMove(event: CdkDragMove) {

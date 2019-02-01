@@ -43,15 +43,28 @@
 
   .movable-personal-message {
     width: 32rem;
-    height: 8rem;
+    height: 12rem;
     border-radius: 8px;
+    text-align: center;
+    padding: 1rem;
   }
 
-  .movable-signature-field {
-    width: 32rem;
-    height: 2.5rem;
-    border-radius: 8px;
+  .movable-signature-field, .sig-font {
+    font-family: 'Dancing Script', cursive;
   }
+  
+  .movable-signature-field {
+    width: 20rem;
+    height: 5rem;
+    border-radius: 8px;
+    font-size: 4rem;
+    line-height: 100%;
+    text-align: center;
+  }
+
+.mat-form-field {
+  width: 90%;
+}
 
 .movable-input-grid {
   position: absolute;
@@ -65,19 +78,18 @@
     background-color: #fff4;
 
     &:hover {
-      background-color: #fffe;
+      background-color: #fff6;
       &::after {
         content: "";
         position: absolute;
         background-image: url('/assets/img/arrows.png');
         background-size: cover;
-        height: 8rem;
-        width: 8rem;
+        height: 4rem;
+        width: 4rem;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
         z-index: 1002;
-        opacity: .4;
         transition: opacity .2s ease-in-out;
         }
       }
@@ -88,7 +100,7 @@
     }
 
     .cdk-drag-dragging.movable::after {
-        opacity: 1;
+        opacity: .4;
     }
   }
 

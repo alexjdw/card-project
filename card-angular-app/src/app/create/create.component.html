@@ -9,25 +9,29 @@
       <mat-step label="Step 1">
         <div class="d-flex flex-column">
           <mat-form-field>
-            <input matInput placeholder="Your name">
+            <input matInput placeholder="Your name" [(ngModel)]="form.username">
           </mat-form-field>
 
           <mat-form-field>
-            <textarea matInput placeholder="description"></textarea>
+            <textarea matInput placeholder="description" [(ngModel)]="form.description"></textarea>
           </mat-form-field>
 
           <mat-form-field>
-            <mat-select placeholder="Select">
-              <mat-option value="option">Birthday</mat-option>
-              <mat-option value="option">Christmas</mat-option>
-              <mat-option value="option">Friendship</mat-option>
+            <mat-select placeholder="Select" [(ngModel)]="form.category">
+              <mat-option value="Birthday">Birthday</mat-option>
+              <mat-option value="Christmas">Christmas</mat-option>
+              <mat-option value="Friendship">Friendship</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
       </mat-step>
       <mat-step label="Step 2">
         Upload a Background Image:
-        <input type="file">
+        <input type="file" [(ngModel)]="form.background_image" (change)="uploadFileOnChange($event, 'bg')" #bgImageUpload>
+        <div>
+          <button mat-raised-button (click)="bgImageUpload.click()">Select File</button>
+        </div>
+        
         <p>OR choose one of ours!</p>
         <button class="img-small-choice mx-2" matStepperNext>
         </button>
@@ -41,7 +45,7 @@
           <p>Add a new custom field</p>
           <mat-tab-group (selectedTabChange)="tabChange($event)" class="mb-3">
             <mat-tab label="Banner Text Field">
-              <label class="my-1">Name this field:</label>
+              <label class="my-1">What should it say?</label>
               <mat-form-field>
                 <input matInput type="text">
               </mat-form-field>
@@ -52,13 +56,9 @@
               <small>* When making the card, users won't be able to change this field.</small>
             </mat-tab>
             <mat-tab label="Personal Message Field">
-              <label class="my-1">Name this field:</label>
-              <mat-form-field>
-                  <input matInput type="text">
-              </mat-form-field>
               <label class="my-1">Default Content:</label>
               <mat-form-field>
-                  <textarea matInput type="text" placeholder="Include some sample text here. People will be able to change the final product."></textarea>
+                <textarea matInput [(ngModel)]="form.innerform.textareadesc" placeholder="Include some sample text here. People will be able to change the final product."></textarea>
               </mat-form-field>
               <div>
                 <h3>Example:</h3>
@@ -72,17 +72,20 @@
             <mat-tab label="Signature Field">
               <div>
                 <h3>Example:</h3>
-                <h3 class="example" style="font-family: 'Dancing Script', cursive;">Amanda Thompson</h3>
+                <h3 class="example sig-font">Amanda Thompson</h3>
               </div>
               <small>* Users will be able to change the name on the signature.</small>
             </mat-tab>
 
             <mat-tab label="Photo">
-              <input type="file" aria-label="Upload an image to include in the card.">
+              <input type="file" class="d-none" (change)="uploadFileOnChange($event, 'bg')" #imageUpload>
+              <div>
+                <button mat-raised-button (click)="imageUpload.click()" aria-label="Upload an image to include in the card.">Select File</button>
+              </div>
               <div>
                 <div class="d-inline">
-                    <h3>Example:</h3>
-                    <img src="/assets/img/example-image.svg" class="example">
+                  <h3>Example:</h3>
+                  <img src="/assets/img/example-image.svg" class="example">
                 </div>
               </div>
             </mat-tab>
@@ -94,15 +97,27 @@
         <div class="template-editor">
           <img class="w-100" src="/assets/img/xmas1.jpg">
           <div class="movable-input-grid">
-            <div class="movable movable-image" cdkDrag (cdkDragMoved)="onMove($event)" (cdkDragEnded)="onDrop($event)">
-              <img class="movable-image" src="/assets/img/wall2.jpg">
-            </div>
-            <div class="movable movable-personal-message" cdkDrag (cdkDragMoved)="onMove($event)" (cdkDragEnded)="onDrop($event)">
-              <span style="color: black;">X: {{ x }}<br>
-              Y: {{ y }}</span>
-            </div>
-            <div class="movable movable-signature-field" cdkDrag (cdkDragMoved)="onMove($event)" (cdkDragEnded)="onDrop($event)"></div>
-            <div class="movable movable-input" cdkDrag></div>
+            <ng-container *ngFor="let cinput of template.custom_inputs">
+              <!-- Uploaded Floating Image option-->
+              <div *ngIf="cinput.type === 'image'" class="movable movable-image" cdkDrag (cdkDragMoved)="onMove($event)" (cdkDragEnded)="onDrop($event)">
+                <img class="movable-image" src="/assets/img/wall2.jpg">
+              </div>
+
+              <!-- Textarea option -->
+              <div *ngIf="cinput.type === 'textarea'" class="movable movable-personal-message" cdkDrag (cdkDragMoved)="onMove($event)" (cdkDragEnded)="onDrop($event)">
+                  <p class="fake-textarea">This text is just a placeholder. You'll be able to edit it once the template is complete. <br><br> <em>Painting should do one thing. It should put happiness in your heart. Fluff that up. And just raise cain. Isn't that fantastic that you can create an almighty tree that fast? It's important to me that you're happy. Nothing wrong with washing your brush. ~ Bob Ross</em></p>
+              </div>
+
+              <!-- Signature option -->
+              <div *ngIf="cinput.type === 'signature'" class="movable movable-signature-field" cdkDrag (cdkDragMoved)="onMove($event)" (cdkDragEnded)="onDrop($event)">
+                Signature
+              </div>
+              
+              <!-- Banner option -->
+              <div *ngIf="cinput.type === 'banner'" class="movable movable-input" cdkDrag>
+                {{ this.form.bannerText }}
+              </div>
+            </ng-container>
           </div>
         </div>
       </mat-step>

@@ -2,8 +2,19 @@ var express = require('express');
 var app = express();
 var path = require('path');
 var bodyParser = require('body-parser');
-app.use(bodyParser.json());
+var fileUpload = require('express-fileupload');  // https://www.npmjs.com/package/express-fileupload
 var session = require('express-session');
+
+
+app.use(bodyParser.json());
+
+// Maximum file size of 10MB, server will cancel files over 10MB.
+app.use(fileUpload(
+    {limits: { fileSize: 10 * 1024 * 1024 },
+    safeFileNames: true,
+    preserveExtension: true,
+    abortOnLimit: true}));
+
 app.use(session({
     secret: 'keyboardkitteh',
     resave: false,

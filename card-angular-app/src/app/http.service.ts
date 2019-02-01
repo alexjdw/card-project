@@ -17,4 +17,7 @@ export class HttpService {
     createTemplate(form_data) {
         return this._http.post('/api/templates/', form_data);
     }
+    uploadTemplateFile(file) {
+        return this._http.post('/file/upload', file);
+    }
 }

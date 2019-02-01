@@ -22,6 +22,7 @@
     "bootstrap": "^4.2.1",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
+    "express-fileupload": "^1.1.1-alpha.1",
     "express-flash": "0.0.2",
     "express-session": "^1.15.6",
     "hammerjs": "^2.0.8",
@@ -32,6 +33,7 @@
     "ng-simple-slideshow": "^1.2.7",
     "path": "^0.12.7",
     "popper.js": "^1.14.7",
+    "shortid": "^2.2.14",
     "socket.io": "^2.2.0"
   },
   "devDependencies": {},
