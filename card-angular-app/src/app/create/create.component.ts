@@ -41,7 +41,8 @@ class CardTemplate {
 export class CreateComponent implements OnInit {
     template: CardTemplate;
     selectedTab: string = "Banner Text Field";
-    latestUploadedImgUrl:string = '';
+    latestUploadedImgUrl: string = '/assets/img/example-image.svg';
+    uploadedImageUrls: string[] = [''];
     form: any;
 
     constructor(
@@ -73,15 +74,16 @@ export class CreateComponent implements OnInit {
     }
 
     addField() {
+        console.log(this.form);
         if (this.selectedTab === "Banner Text Field") {
-            this.template.custom_inputs.push(new CardTemplateCustomInput('banner', {content: this.form.bannerText}));
+            this.template.custom_inputs.push(new CardTemplateCustomInput('banner', {content: this.form.innerform.bannerText}));
         } else if (this.selectedTab === "Personal Message Field") {
             this.template.custom_inputs.push(new CardTemplateCustomInput('textarea'));
         } else if (this.selectedTab === "Signature Field") {
-            this.template.custom_inputs.push();
+            this.template.custom_inputs.push(new CardTemplateCustomInput('signature'));
         } else if (this.selectedTab === "Photo") {
             this.template.custom_inputs.push(
-                new CardTemplateCustomInput('image', {url: '/assets/img/wall2.jpg'})
+                new CardTemplateCustomInput('image', {url: this.latestUploadedImgUrl})
                 );
         }
     }
@@ -91,18 +93,19 @@ export class CreateComponent implements OnInit {
         var uploadData = new FormData();
         uploadData.append('file', file, file.name);
 
-        this._httpService.uploadTemplateFile(uploadData).subscribe((resp) => {
-            //confirm response here
-            console.log(resp);
+        this._httpService.uploadTemplateFile(uploadData).subscribe((response) => {
+            this.uploadedImageUrls.push(response['filename']);
+            this.latestUploadedImgUrl = response['filename'];
         });
     }
 
     onMove(event: CdkDragMove) {
+        // Please leave this here
         // this.x += event.delta.x;
         // this.y += event.delta.y;
     }
 
     onDrop(event: CdkDragEnd) {
-
+        // Please leave this here
     }
 }

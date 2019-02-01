@@ -31,10 +31,11 @@
     position: relative;
   }
 
-  .movable-input {
-    width: 32rem;
-    height: 2.5rem;
+  .movable-banner {
+    min-width: 12rem;
+    padding: 1rem;
     border-radius: 8px;
+    text-align: center;
   }
 
   .movable-image {
@@ -75,10 +76,11 @@
     top: 0;
     left: 0;
     transition: background-color .2s ease-in-out;
-    background-color: #fff4;
+    background-color: #6f42c122;
+    border: 2px dotted #6f42c1;
 
     &:hover {
-      background-color: #fff6;
+      background-color: #6f42c166;
       &::after {
         content: "";
         position: absolute;

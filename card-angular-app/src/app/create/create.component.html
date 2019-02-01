@@ -47,7 +47,7 @@
             <mat-tab label="Banner Text Field">
               <label class="my-1">What should it say?</label>
               <mat-form-field>
-                <input matInput type="text">
+                <input matInput [(ngModel)]="form.innerform.bannerText" type="text">
               </mat-form-field>
               <div>
                 <h3>Example:</h3>
@@ -85,7 +85,7 @@
               <div>
                 <div class="d-inline">
                   <h3>Example:</h3>
-                  <img src="/assets/img/example-image.svg" class="example">
+                  <img src="{{ latestUploadedImgUrl }}" class="example">
                 </div>
               </div>
             </mat-tab>
@@ -100,7 +100,7 @@
             <ng-container *ngFor="let cinput of template.custom_inputs">
               <!-- Uploaded Floating Image option-->
               <div *ngIf="cinput.type === 'image'" class="movable movable-image" cdkDrag (cdkDragMoved)="onMove($event)" (cdkDragEnded)="onDrop($event)">
-                <img class="movable-image" src="/assets/img/wall2.jpg">
+                <img class="movable-image" src="{{ cinput.options.url }}">
               </div>
 
               <!-- Textarea option -->
@@ -114,8 +114,8 @@
               </div>
               
               <!-- Banner option -->
-              <div *ngIf="cinput.type === 'banner'" class="movable movable-input" cdkDrag>
-                {{ this.form.bannerText }}
+              <div *ngIf="cinput.type === 'banner'" class="movable movable-banner" cdkDrag>
+                <h3>{{ cinput.options.content }}</h3>
               </div>
             </ng-container>
           </div>
