@@ -4,16 +4,18 @@ import { HttpService } from '../http.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+import { CdkDragMove, CdkDragEnd } from '@angular/cdk/drag-drop';
+
 
 class CardTemplateCustomInput {
-    constructor() {  }
+    constructor() { }
     name: string;
     type: string;
     options: object;
 }
 
 class CardTemplate {
-    constructor() {  }
+    constructor() { }
     custom_inputs: [CardTemplateCustomInput];
     user_name: string;
     card_name: string;
@@ -30,10 +32,10 @@ class CardTemplate {
   }]
 })
 export class CreateComponent implements OnInit {
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
-  template: CardTemplate;
-
+    firstFormGroup: FormGroup;
+    secondFormGroup: FormGroup;
+    template: CardTemplate;
+    selectedTab: string;
   constructor(
     private _httpService: HttpService,
     // private ngFlashMessageService: NgFlashMessageService,
@@ -41,17 +43,29 @@ export class CreateComponent implements OnInit {
     private _router: Router,
     private _formBuilder: FormBuilder) { }
 
-  ngOnInit() {
-    this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
-    });
-    this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
-    });
-  }
+    ngOnInit() {
+        this.firstFormGroup = this._formBuilder.group({
+        firstCtrl: ['', Validators.required]
+        });
+        this.secondFormGroup = this._formBuilder.group({
+        secondCtrl: ['', Validators.required]
+        });
+    }
 
-    addComponent() {
+    tabChange(event) {
+        this.selectedTab = event.tab.tabLabel;
+    }
+
+    addField() {
 
     }
 
+    onMove(event: CdkDragMove) {
+        // this.x += event.delta.x;
+        // this.y += event.delta.y;
+    }
+
+    onDrop(event: CdkDragEnd) {
+
+    }
 }

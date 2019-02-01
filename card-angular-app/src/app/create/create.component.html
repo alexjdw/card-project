@@ -39,13 +39,16 @@
       <mat-step label="Step 3">
         <div>
           <p>Add a new custom field</p>
-          <mat-tab-group class="tabgroup-min-height">
+          <mat-tab-group (selectedTabChange)="tabChange($event)" class="mb-3">
             <mat-tab label="Banner Text Field">
               <label class="my-1">Name this field:</label>
               <mat-form-field>
                 <input matInput type="text">
               </mat-form-field>
-              <h2 class="example">Happy Holidays!</h2>
+              <div>
+                <h3>Example:</h3>
+                <h2 class="example">Happy Holidays!</h2>
+              </div>
               <small>* When making the card, users won't be able to change this field.</small>
             </mat-tab>
             <mat-tab label="Personal Message Field">
@@ -57,20 +60,30 @@
               <mat-form-field>
                   <textarea matInput type="text" placeholder="Include some sample text here. People will be able to change the final product."></textarea>
               </mat-form-field>
-              <p class="example">Merry Christmas to all of your family and friends. We've been up to a lot this year! The treeshouse in the back yard is finally complete, and Jennie spends a lot of time up there with her friends...</p>
+              <div>
+                <h3>Example:</h3>
+                <p class="example">
+                  Merry Christmas to all of your family and friends. We've been up to a lot this year! The treehouse in the back yard is finally complete, and Jennie spends a lot of time up there with her friends...
+                </p>
+              </div>
               <small>* Users will be able to fill in their own text for personal messages in their cards.</small>
 
             </mat-tab>
             <mat-tab label="Signature Field">
-              <h3 class="example" style="font-family: 'Dancing Script', cursive;">Amanda Thompson</h3>
+              <div>
+                <h3>Example:</h3>
+                <h3 class="example" style="font-family: 'Dancing Script', cursive;">Amanda Thompson</h3>
+              </div>
               <small>* Users will be able to change the name on the signature.</small>
             </mat-tab>
 
             <mat-tab label="Photo">
               <input type="file" aria-label="Upload an image to include in the card.">
-              <div class="d-inline">
-                <h3>Example:</h3>
-                <img src="/assets/img/example-image.svg" class="example">
+              <div>
+                <div class="d-inline">
+                    <h3>Example:</h3>
+                    <img src="/assets/img/example-image.svg" class="example">
+                </div>
               </div>
             </mat-tab>
           </mat-tab-group>
@@ -81,9 +94,14 @@
         <div class="template-editor">
           <img class="w-100" src="/assets/img/xmas1.jpg">
           <div class="movable-input-grid">
-            <img class="movable-image" src="/assets/img/wall2.jpg" cdkDrag>
-            <div class="movable movable-personal-message" cdkDrag></div>
-            <div class="movable movable-signature-field" cdkDrag></div>
+            <div class="movable movable-image" cdkDrag (cdkDragMoved)="onMove($event)" (cdkDragEnded)="onDrop($event)">
+              <img class="movable-image" src="/assets/img/wall2.jpg">
+            </div>
+            <div class="movable movable-personal-message" cdkDrag (cdkDragMoved)="onMove($event)" (cdkDragEnded)="onDrop($event)">
+              <span style="color: black;">X: {{ x }}<br>
+              Y: {{ y }}</span>
+            </div>
+            <div class="movable movable-signature-field" cdkDrag (cdkDragMoved)="onMove($event)" (cdkDragEnded)="onDrop($event)"></div>
             <div class="movable movable-input" cdkDrag></div>
           </div>
         </div>

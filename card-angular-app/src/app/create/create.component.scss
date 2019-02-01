@@ -31,52 +31,64 @@
     position: relative;
   }
 
-  .movable-input-grid {
+  .movable-input {
+    width: 32rem;
+    height: 2.5rem;
+    border-radius: 8px;
+  }
+
+  .movable-image {
+    width: 20rem;
+  }
+
+  .movable-personal-message {
+    width: 32rem;
+    height: 8rem;
+    border-radius: 8px;
+  }
+
+  .movable-signature-field {
+    width: 32rem;
+    height: 2.5rem;
+    border-radius: 8px;
+  }
+
+.movable-input-grid {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  .movable {
     position: absolute;
     top: 0;
-    z-index: 100;
+    left: 0;
+    transition: background-color .2s ease-in-out;
+    background-color: #fff4;
 
-    .movable-input {
-      width: 32rem;
-      height: 2.5rem;
-      border-radius: 8px;
-    }
-
-    .movable-image {
-      width: 20rem;
-    }
-
-    .movable-personal-message {
-      width: 32rem;
-      height: 8rem;
-      border-radius: 8px;
-    }
-
-    .movable-signature-field {
-      width: 32rem;
-      height: 2.5rem;
-      border-radius: 8px;
-    }
-
-    .movable {
-      transition: background-color .2s ease-in-out;
-      background-color: #fff4;
-
-      &:hover {
-        background-color: #fffc;
-        }
-    }
-
-    .movable::after {
+    &:hover {
+      background-color: #fffe;
+      &::after {
         content: "";
         position: absolute;
         background-image: url('/assets/img/arrows.png');
         background-size: cover;
-        width: 2.5rem;
-        height: 2.5rem;
+        height: 8rem;
+        width: 8rem;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+        z-index: 1002;
+        opacity: .4;
+        transition: opacity .2s ease-in-out;
+        }
+      }
+    }
+
+    .cdk-drag-dragging.movable {
+      z-index: 1001;
+    }
+
+    .cdk-drag-dragging.movable::after {
+        opacity: 1;
     }
   }
 
@@ -84,6 +96,7 @@
     display: inline-block;
     padding: .5em;
     border: 2px dotted #6f42c1;
+    background-color: #6f42c122;
   }
 
   img.example {
@@ -92,7 +105,7 @@
   }
 
   .purple {
-    background-color: #6f42c1;
+    background-color: hsl(261, 51%, 51%);
   }
 
   input, textarea {
