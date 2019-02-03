@@ -9,10 +9,11 @@ import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms'
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  email = new FormControl('', [Validators.required, Validators.email]);
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
-
+    email = new FormControl('', [Validators.required, Validators.email]);
+    firstFormGroup: FormGroup;
+    secondFormGroup: FormGroup;
+    showEmail: boolean = true;
+    showOptions: boolean = false;
   constructor(
     private _httpService: HttpService,
     // private ngFlashMessageService: NgFlashMessageService,
@@ -51,6 +52,10 @@ export class NavbarComponent implements OnInit {
   }
   goToFriendship(){
     this._router.navigate(['/cards/collection/friendship']);
+  }
+  submitEmail() {
+      this.showForm = false;
+      this.showOptions = true;
   }
 
 }

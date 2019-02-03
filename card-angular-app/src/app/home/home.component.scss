@@ -2,13 +2,12 @@
 //       border: 1px dotted purple;
 // }
 
-
-.homepage-stepper-positioner {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
+.homepage-email {
+  padding: 2rem 3rem;
+  background-color: #6610f2ee;
+  border: 2px solid#6610f2;
+  color: white;
+}
   
   .slide_block{
     margin: 3% 35%;
