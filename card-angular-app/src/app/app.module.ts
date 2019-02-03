@@ -51,6 +51,7 @@ import { ChristmasComponent } from './christmas/christmas.component';
 import { CreateComponent } from './create/create.component';
 import { FriendshipComponent } from './friendship/friendship.component';
 import { CustomizeComponent } from './customize/customize.component';
+import { NavbarComponent } from './navbar/navbar.component';
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
@@ -62,7 +63,8 @@ import { CustomizeComponent } from './customize/customize.component';
     ChristmasComponent,
     CreateComponent,
     FriendshipComponent,
-    CustomizeComponent
+    CustomizeComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
