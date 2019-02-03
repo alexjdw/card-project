@@ -1,6 +1,9 @@
 <!-- <div style = 'background-image: url("../assets/img/wall.jpg");'> -->
-<div class="d-flex flex-column">
-  <div class="splash d-flex flex-items-center flex-grow-1 bd-highlight">
+<div class="d-flex flex-column h-100 bg-1">
+  <app-navbar></app-navbar> <!-- Navbar goes inside the flexbox -->
+
+
+  <div class="splash d-flex flex-column justify-content-center align-items-center flex-grow-1 bd-highlight">
     <div class="w-25">
       <mat-horizontal-stepper linear #stepper>
         <mat-step [stepControl]="firstFormGroup" errorMessage="Name is required.">
@@ -42,7 +45,6 @@
   <div class="slide_block">
     <h1 class="text-success">Most Popular eCards!!!</h1>
     <div id="demo" class="carousel slide" data-ride="carousel">
-
       <!-- Indicators -->
       <ul class="carousel-indicators">
         <li data-target="#demo" data-slide-to="0" class="active"></li>

@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpService } from './http.service';
-// import { NgFlashMessageService } from 'ng-flash-messages';
-import { ActivatedRoute, Params, Router } from '@angular/router';
-import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+
+// import { NgFlashMessageService } from 'ng-flash-messages';
 
 @Component({
   selector: 'app-root',
@@ -15,5 +13,9 @@ import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 })
 export class AppComponent implements OnInit{
   // panelOpenState = false;
-  title = 'card-angular-app';
+  constructor() {}
+
+  ngOnInit() {
+
+  }
 }

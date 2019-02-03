@@ -1,4 +1,9 @@
-  .homepage-stepper-positioner {
+// * { /*debug*/
+//       border: 1px dotted purple;
+// }
+
+
+.homepage-stepper-positioner {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -7,4 +12,13 @@
   
   .slide_block{
     margin: 3% 35%;
+    text-align: center;
+  }
+
+  // .carousel-inner {
+  //   max-height: 15rem;
+  // }
+
+  .carousel-item img {
+    max-height: 15rem;
   }
