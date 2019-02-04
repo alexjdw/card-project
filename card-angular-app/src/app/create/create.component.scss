@@ -1,67 +1,71 @@
-  .img-small-choice {
-    display: inline-block;
-    width: 16rem;
-    height: 10rem;
-    background: url(/assets/img/xmas1.jpg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 100% 100%;
-    vertical-align: top;
-  }
-  label {
-    display: block;
-  }
-  .create-form-wrapper {
-    position: absolute;
-    top: 0;
-    z-index: 0;
-    padding-top: rem;
-    background-image: url(/assets/img/wall.jpg);
-    background-size: cover;
-    height: 100%;
-    width: 100%;
-  }
+.img-small-choice {
+  display: inline-block;
+  width: 16rem;
+  height: 10rem;
+  background: url(/assets/img/xmas1.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+  vertical-align: top;
+}
+label {
+  display: block;
+}
+.create-form-wrapper {
+  position: absolute;
+  top: 0;
+  z-index: 0;
+  padding: 0 1rem;
+  background-image: url(/assets/img/wall.jpg);
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
 
-  .create-form-wrapper div {
-    color: #fff;
-    flex: 2;
-  }
-  
-  .template-editor {
-    position: relative;
-  }
+.create-form-wrapper .mat-step {
+  flex: 2;
+  min-width: 84rem;
+}
+.create-form-wrapper div {
+  color: #fff;
+}
 
-  .movable-banner {
-    min-width: 12rem;
-    padding: 1rem;
-    border-radius: 8px;
-    text-align: center;
-  }
+.template-editor {
+  position: relative;
+  width: 80rem;
+}
 
-  .movable-image {
-    width: 20rem;
-  }
+.movable-banner {
+  min-width: 8rem !important;
+  max-width: 70rem !important;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+}
 
-  .movable-personal-message {
-    width: 32rem;
-    height: 12rem;
-    border-radius: 8px;
-    text-align: center;
-    padding: 1rem;
-  }
+.movable-image {
+  width: 20rem !important;
+}
 
-  .movable-signature-field, .sig-font {
-    font-family: 'Dancing Script', cursive;
-  }
-  
-  .movable-signature-field {
-    width: 20rem;
-    height: 5rem;
-    border-radius: 8px;
-    font-size: 4rem;
-    line-height: 100%;
-    text-align: center;
-  }
+.movable-personal-message {
+  width: 32rem !important;
+  height: 12rem !important;
+  text-align: center;
+  padding: 1rem;
+}
+
+.movable-signature-field, .sig-font {
+  font-family: 'Dancing Script', cursive;
+}
+
+.movable-signature-field {
+  width: 20rem;
+  height: 5rem;
+  border-radius: 8px;
+  font-size: 4rem;
+  line-height: 100%;
+  text-align: center;
+}
 
 .mat-form-field {
   width: 90%;
@@ -71,6 +75,7 @@
   position: absolute;
   top: 0;
   height: 100%;
+  width: 100%;
   .movable {
     position: absolute;
     top: 0;
@@ -114,8 +119,8 @@
   }
 
   img.example {
-    width: 16rem;
-    height: 10rem;
+    width: 16rem !important;
+    height: 10rem !important;
   }
 
   .purple {
@@ -124,8 +129,4 @@
 
   input, textarea {
     min-width: 16rem;
-  }
-
-  .tabgroup-min-height {
-    min-height: 18rem;
   }

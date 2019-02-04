@@ -4,9 +4,9 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss']
+    selector: 'app-navbar',
+    templateUrl: './navbar.component.html',
+    styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
     email = new FormControl('', [Validators.required, Validators.email]);
@@ -14,12 +14,13 @@ export class NavbarComponent implements OnInit {
     secondFormGroup: FormGroup;
     showEmail: boolean = true;
     showOptions: boolean = false;
-  constructor(
-    private _httpService: HttpService,
-    // private ngFlashMessageService: NgFlashMessageService,
-    private _route: ActivatedRoute,
-    private _router: Router,
-    private _formBuilder: FormBuilder) { }
+
+    constructor(
+        private _httpService: HttpService,
+        // private ngFlashMessageService: NgFlashMessageService,
+        private _route: ActivatedRoute,
+        private _router: Router,
+        private _formBuilder: FormBuilder) { }
 
     ngOnInit() {
       this.firstFormGroup = this._formBuilder.group({
@@ -53,9 +54,4 @@ export class NavbarComponent implements OnInit {
   goToFriendship(){
     this._router.navigate(['/cards/collection/friendship']);
   }
-  submitEmail() {
-      this.showForm = false;
-      this.showOptions = true;
-  }
-
 }

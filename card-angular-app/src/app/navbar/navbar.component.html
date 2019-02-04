@@ -10,20 +10,14 @@
       </mat-menu>
       <mat-icon class="example-icon" (click)="goToCreateTemplate()">create</mat-icon>
       <span class="example-spacer"></span>
-      <!-- <mat-accordion> -->
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            Collection
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <p><a href="/cards/collection/birthday">Birthday</a></p>
-        <hr>
-        <p><a href="/cards/collection/christmas">Christmas</a></p>
-        <hr>
-        <p><a href="/cards/collection/friendship">Friendship</a></p>
-      </mat-expansion-panel>
-      <!-- </mat-accordion> -->
+      
+      <!-- Collections dropdown menu -->
+      <button mat-button [matMenuTriggerFor]="collectionsMenu">Collections</button>
+      <mat-menu #collectionsMenu="matMenu">
+        <button mat-menu-item [routerLink]="['/cards/collection/birthday']">Birthday</button>
+        <button mat-menu-item [routerLink]="['/cards/collection/christmas']">Christmas</button>
+        <button mat-menu-item [routerLink]="['/cards/collection/friendship']">Friendship</button>
+      </mat-menu>
     </mat-toolbar-row>
   </mat-toolbar>
   

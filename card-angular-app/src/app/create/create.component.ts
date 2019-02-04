@@ -11,6 +11,10 @@ class CardTemplateCustomInput {
     size: number = 3;
     font: string;
     classes: [string];
+    top: number = 0;
+    topdelta: number = 0;
+    leftdelta: number = 0;
+    left: number = 0;
 
     constructor(
         public type: string,
@@ -21,6 +25,8 @@ class CardTemplateCustomInput {
 
 class CardTemplate {
     custom_inputs: CardTemplateCustomInput[];
+    height: number;
+    width: number;
     user_name: string;
     card_name: string;
     category: string;
@@ -61,9 +67,9 @@ export class CreateComponent implements OnInit {
                 background_image: '',
                 category: '',
                 innerform: {
-                    bannertext: '>:3',
-                    imageurl: '>:3',
-                    textareadesc: '>:3',
+                    bannertext: '',
+                    imageurl: '',
+                    textareadesc: '',
                 }
             }
         }
@@ -99,13 +105,36 @@ export class CreateComponent implements OnInit {
         });
     }
 
-    onMove(event: CdkDragMove) {
+    onMove(event: CdkDragMove, index: number) {
         // Please leave this here
-        // this.x += event.delta.x;
-        // this.y += event.delta.y;
+        this.template.custom_inputs[index].leftdelta += event.event['movementX'];
+        this.template.custom_inputs[index].topdelta += event.event['movementY'];
+        console.log(this.template.custom_inputs[index].topdelta);
+        console.log(this.template.custom_inputs[index].leftdelta);
     }
 
-    onDrop(event: CdkDragEnd) {
-        // Please leave this here
+    onDrop(event: CdkDragEnd, index: number) {
+        this.template.custom_inputs[index].left += this.template.custom_inputs[index].leftdelta;
+        this.template.custom_inputs[index].top += this.template.custom_inputs[index].topdelta;
+
+        if (this.template.custom_inputs[index].left >= 1132) {
+            this.template.custom_inputs[index].left = 1132;
+        } else if (this.template.custom_inputs[index].left < 0) {
+            this.template.custom_inputs[index].left = 0;
+        }
+
+        if (this.template.custom_inputs[index].top < 0) {
+            this.template.custom_inputs[index].top = 0;
+        } else if (this.template.custom_inputs[index].top >= 900) {
+            this.template.custom_inputs[index].top = 900;
+        }
+
+        this.template.custom_inputs[index].leftdelta = 0;
+        this.template.custom_inputs[index].topdelta = 0;
+        console.log(this.template.custom_inputs[index]);
+    }
+
+    saveTemplate() {
+        console.log(this.template);
     }
 }
