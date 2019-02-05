@@ -1,33 +1,57 @@
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/mean_project');
 
+CardTemplateCustomInput = new mongoose.Schema({
+    top: {
+        type: Number,
+        required: true
+    },
+    left: {
+        type: Number,
+        required: true
+    },
+    height: {
+        type: Number,
+        required: true
+    },
+    width: {
+        type: Number,
+        required: true
+    },
+    type: {
+        type: String,
+        required: true
+    },
+    options: {
+        type: Object,
+        required: false
+    }
+});
 
 CardTemplateSchema = new mongoose.Schema({
-   input_fields: [{ //This is for the form
-       field_name: {
-           type: String,
-           required: true,
-       },
-       field_input_type: {
-           // can be "input" or "textarea" so the user can get a big or small text box
-           type: String,
-           required: true,
-       }
-   }],
-   background_image: {
-       type: String,
+   custom_inputs: [CardTemplateCustomInput],
+   height: {
+       type: Number,
+       required: true
+   },
+   width: {
+       type: Number,
        required: true
    },
    description: {
        type: String,
        required: true
    },
-   other_images: [{
-       name: String,
-       url: String
-   }],
-   options: [String], //placeholder for other user choices that we could add.
+//    options: [String], //placeholder for other user choices that we could add.
    creator: {
+       type: String,
+       required: true
+   },
+   template_name: {
+       type: String,
+       required: true
+   },
+   bg_image_url: {
        type: String,
        required: true
    },
@@ -37,7 +61,7 @@ CardTemplateSchema = new mongoose.Schema({
    },
 });
 
-Card = new mongoose.Schema({
+CardSchema = new mongoose.Schema({
    creator: {
        type: String,
        required: true
@@ -80,7 +104,7 @@ UserSchema = new mongoose.Schema({
 
 mongoose.model('CardTemplate', CardTemplateSchema);
 mongoose.model('User', UserSchema);
-mongoose.model('Card', Card);
+mongoose.model('Card', CardSchema);
 
 
 module.exports = {

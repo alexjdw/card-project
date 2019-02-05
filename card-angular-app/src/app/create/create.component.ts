@@ -10,8 +10,6 @@ const MAX_WIDTH = 1000;
 const MAX_HEIGHT = 1000;
 
 class CardTemplateCustomInput {
-    size: number = 3;
-    font: string;
     top: number = 0;
     left: number = 0;
 
@@ -78,12 +76,10 @@ export class CreateComponent implements OnInit {
         }
 
     tabChange(event) {
-        console.log(event);
         this.selectedTab = event.tab.textLabel;
     }
 
     setTemplateBackground(img) {
-        console.log(img, img.height, img.width);
         if (img.height > MAX_HEIGHT) {
             let ratio = (1000 / img.height);
             img.height = img.height * ratio;
@@ -98,7 +94,6 @@ export class CreateComponent implements OnInit {
     }
 
     addField() {
-        console.log(this.form);
         if (this.selectedTab === "Banner Text Field") {
             this.template.custom_inputs.push(new CardTemplateCustomInput('banner', {content: this.form.innerform.bannerText}));
         } else if (this.selectedTab === "Personal Message Field") {
@@ -125,7 +120,6 @@ export class CreateComponent implements OnInit {
 
     uploadFileOnChange(event, target) {
         var file = event.target.files[0];
-        console.log(file);
         var uploadData = new FormData();
         uploadData.append('file', file, file.name);
 
@@ -171,6 +165,34 @@ export class CreateComponent implements OnInit {
     }
 
     saveTemplate() {
-        console.log(this.template);
+        var data = {}
+        data['custom_inputs'] = [];
+        data['bg_image_url'] = this.template.bg_image.src;
+        data['height'] = this.template.bg_image.height;
+        data['width'] = this.template.bg_image.width;
+        data['description'] = this.form.desc;
+        data['creator'] = this.form.name;
+        data['template_name'] = this.form.template_name;
+
+        for (let inp of this.template.custom_inputs) {
+            var cust_input_data = {
+                type: inp.type,
+                top: inp.top,
+                left: inp.left,
+            };
+            if (inp.type == 'image') {
+                cust_input_data['options'] = { 
+                    height: inp.options['img']['height'],
+                    width: inp.options['img']['width'],
+                }
+            }
+            if (inp.type == 'banner') {
+                cust_input_data['options'] = inp.options;
+            }
+
+            data['custom_inputs'].push(cust_input_data);
+        }
+        console.log(data);
+        this._httpService.createTemplate(data);
     }
 }

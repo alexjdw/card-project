@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var shortID = require('shortid'); //Makes little random strings of text that are unique.
-const file_upload_dir = './card-angular-app/dist/card-angular-app/assets/img/upload/';
-const url_prefix = '/assets/img/upload/';
+const file_upload_dir = './static/upload/';
+const url_prefix = '/upload/';
 
 function fileUpload(request, response) {
     if (Object.keys(request.files).length == 0) {
@@ -13,7 +13,7 @@ function fileUpload(request, response) {
     request.files.file.mv(file_upload_dir + filename, function(err) {
         if (err) {
             console.log("Tried to upload to " + file_upload_dir + filename);
-            console.log(err)
+            console.log(err);
             return response.status(500).json({error: 'File failed to save.', fileErrObj: err});
         }
 
