@@ -29,17 +29,23 @@
       </mat-step>
       <mat-step label="Step 2">
         Upload a Background Image:
-        <input type="file" [(ngModel)]="form.background_image" (change)="uploadFileOnChange($event, 'bg')" #bgImageUpload>
+        <input class="d-none" type="file" [(ngModel)]="form.background_image" (change)="uploadFileOnChange($event, 'bg')" #bgImageUpload>
+        
         <div>
           <button mat-raised-button (click)="bgImageUpload.click()">Select File</button>
         </div>
-        
+        <ng-container *ngFor="let bg of backgroundOptions">
+            <button class="img-small-choice-button mx-2" (click)="setTemplateBackground(bg)" matStepperNext>
+              <img class="img-small-choice" src="{{ bg.src }}">
+            </button>
+        </ng-container>
+
         <p>OR choose one of ours!</p>
-        <button class="img-small-choice mx-2" matStepperNext>
+        <button class="img-small-choice mx-2" style="background-image: url('/assets/img/xmas1.jpg');" (click)="setTemplateBackground('/assets/img/xmas1.jpg')" matStepperNext>
         </button>
-        <button class="img-small-choice mx-2" matStepperNext>
+        <button class="img-small-choice mx-2" style="background-image: url('/assets/img/xmas1.jpg');" (click)="setTemplateBackground('/assets/img/xmas1.jpg')" matStepperNext>
         </button>
-        <button class="img-small-choice mx-2" matStepperNext>
+        <button class="img-small-choice mx-2" style="background-image: url('/assets/img/xmas1.jpg');" (click)="setTemplateBackground('/assets/img/xmas1.jpg')" matStepperNext>
         </button>
       </mat-step>
       <mat-step label="Step 3">
@@ -80,14 +86,14 @@
             </mat-tab>
 
             <mat-tab label="Photo">
-              <input type="file" class="d-none" (change)="uploadFileOnChange($event, 'bg')" #imageUpload>
+              <input type="file" class="d-none" (change)="uploadFileOnChange($event, 'template')" #imageUpload>
               <div>
                 <button mat-raised-button (click)="imageUpload.click()" aria-label="Upload an image to include in the card.">Select File</button>
               </div>
               <div>
                 <div class="d-inline">
                   <h3>Example:</h3>
-                  <img src="{{ latestUploadedImgUrl }}" class="example">
+                  <img src="{{ latestUploadedImg.src }}" class="example">
                 </div>
               </div>
             </mat-tab>
@@ -96,33 +102,36 @@
             <button mat-button class="purple" (click)="addField()">Add to Card</button>
           </p>
         </div>
-        <div class="template-editor">
-          <img class="w-100" src="/assets/img/xmas1.jpg">
-          <div class="movable-input-grid">
-            <ng-container *ngFor="let cinput of template.custom_inputs; let i = index;">
-              <!-- Uploaded Floating Image option-->
-              <div *ngIf="cinput.type === 'image'" class="movable movable-image" cdkDrag cdkDragBoundary=".movable-input-grid" (cdkDragMoved)="onMove($event, i)" (cdkDragEnded)="onDrop($event, i)">
-                <img class="movable-image" src="{{ cinput.options.url }}">
-              </div>
+        
+        <ng-container *ngIf="template.bg_image">
+          <div class="template-editor">
+            <img src="{{ template.bg_image.src }}" width="{{template.bg_image.width}}" height="{{template.bg_image.height}}">
+            <div class="movable-input-grid">
+              <ng-container *ngFor="let cinput of template.custom_inputs; let i = index;">
+                <!-- Uploaded Floating Image option-->
+                <div *ngIf="cinput.type === 'image'" class="movable movable-image" cdkDrag cdkDragBoundary=".movable-input-grid" (cdkDragMoved)="onMove($event, i)" (cdkDragEnded)="onDrop($event, i)">
+                  <img class="movable-image" src="{{ cinput.options.img.src }}" width="{{ cinput.options.img.width }}" height="{{ cinput.options.img.height }}">
+                </div>
 
-              <!-- Textarea option -->
-              <div *ngIf="cinput.type === 'textarea'" class="movable movable-personal-message" cdkDrag cdkDragBoundary=".movable-input-grid" (cdkDragMoved)="onMove($event, i)" (cdkDragEnded)="onDrop($event, i)">
-                <p class="fake-textarea">This text is just a placeholder. You'll be able to edit it once the template is complete. <br><br> <em>Painting should do one thing. It should put happiness in your heart. Fluff that up. And just raise cain. Isn't that fantastic that you can create an almighty tree that fast? It's important to me that you're happy. Nothing wrong with washing your brush. ~ Bob Ross</em></p>
-              </div>
+                <!-- Textarea option -->
+                <div *ngIf="cinput.type === 'textarea'" class="movable movable-personal-message" cdkDrag cdkDragBoundary=".movable-input-grid" (cdkDragMoved)="onMove($event, i)" (cdkDragEnded)="onDrop($event, i)">
+                  <p class="fake-textarea">This text is just a placeholder. You'll be able to edit it once the template is complete. <br><br> <em>Painting should do one thing. It should put happiness in your heart. Fluff that up. And just raise cain. Isn't that fantastic that you can create an almighty tree that fast? It's important to me that you're happy. Nothing wrong with washing your brush. ~ Bob Ross</em></p>
+                </div>
 
-              <!-- Signature option -->
-              <div *ngIf="cinput.type === 'signature'" class="movable movable-signature-field" cdkDrag cdkDragBoundary=".movable-input-grid" (cdkDragMoved)="onMove($event, i)" (cdkDragEnded)="onDrop($event, i)">
-                Signature
-              </div>
-              
-              <!-- Banner option -->
-              <div *ngIf="cinput.type === 'banner'" class="movable movable-banner" cdkDrag cdkDragBoundary=".movable-input-grid" (cdkDragMoved)="onMove($event, i)" (cdkDragEnded)="onDrop($event, i)">
-                <h3>{{ cinput.options.content }}</h3>
-              </div>
-            </ng-container>
+                <!-- Signature option -->
+                <div *ngIf="cinput.type === 'signature'" class="movable movable-signature-field" cdkDrag cdkDragBoundary=".movable-input-grid" (cdkDragMoved)="onMove($event, i)" (cdkDragEnded)="onDrop($event, i)">
+                  Signature
+                </div>
+                
+                <!-- Banner option -->
+                <div *ngIf="cinput.type === 'banner'" class="movable movable-banner" cdkDrag cdkDragBoundary=".movable-input-grid" (cdkDragMoved)="onMove($event, i)" (cdkDragEnded)="onDrop($event, i)">
+                  <h3>{{ cinput.options.content }}</h3>
+                </div>
+              </ng-container>
+            </div>
           </div>
-        </div>
-        <button (click)="saveTemplate()" mat-raised-button>Save Template</button>
+          <button (click)="saveTemplate()" mat-raised-button>Save Template</button>
+        </ng-container>
       </mat-step>
     </mat-vertical-stepper>
   </div>
