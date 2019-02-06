@@ -19,9 +19,12 @@ package-lock.json
 *.log
 *.gz
 
+# image upload
+static/upload
 
 # Coveralls
 coverage
 
 # Benchmarking
 benchmarks/graphs
+S
