@@ -10,14 +10,6 @@ CardTemplateCustomInput = new mongoose.Schema({
         type: Number,
         required: true
     },
-    height: {
-        type: Number,
-        required: true
-    },
-    width: {
-        type: Number,
-        required: true
-    },
     type: {
         type: String,
         required: true
@@ -103,8 +95,8 @@ UserSchema = new mongoose.Schema({
 });
 
 mongoose.model('CardTemplate', CardTemplateSchema);
-mongoose.model('User', UserSchema);
 mongoose.model('Card', CardSchema);
+mongoose.model('User', UserSchema);
 
 
 module.exports = {

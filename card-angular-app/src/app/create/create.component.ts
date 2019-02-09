@@ -63,6 +63,7 @@ export class CreateComponent implements OnInit {
                 description: '',
                 background_image: '',
                 category: '',
+                template_name: '',
                 innerform: {
                     bannertext: '',
                     imageurl: '',
@@ -170,8 +171,8 @@ export class CreateComponent implements OnInit {
         data['bg_image_url'] = this.template.bg_image.src;
         data['height'] = this.template.bg_image.height;
         data['width'] = this.template.bg_image.width;
-        data['description'] = this.form.desc;
-        data['creator'] = this.form.name;
+        data['description'] = this.form.description;
+        data['creator'] = this.form.username;
         data['template_name'] = this.form.template_name;
 
         for (let inp of this.template.custom_inputs) {
@@ -193,6 +194,9 @@ export class CreateComponent implements OnInit {
             data['custom_inputs'].push(cust_input_data);
         }
         console.log(data);
-        this._httpService.createTemplate(data);
+        console.log("Creating/subscribing...");
+        this._httpService.createTemplate(data).subscribe(result => {
+            console.log(result);
+        });
     }
 }

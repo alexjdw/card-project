@@ -38,8 +38,11 @@ For each model, these routes will be exposed: (routes start with api/<modelname>
     /api/<model>/:id [DELETE]
         Delete document by ID. */
 function register_api_routes(app) {
-    for (model in models) {
+    for (let model in models) {
         console.log("Registering /api/" + model);
+        var M = models[model];
+        console.log(models[model].modelName);
+        // console.log(models[model].schema.obj);
 
         /** GET -- Get all documents for model. */
         app.get('/api/' + model, function(request, response) {
@@ -59,6 +62,9 @@ function register_api_routes(app) {
         
         /** POST -- Create a new doucment. */
         app.post('/api/' + model, function(request, response) {
+            console.log(models[model].modelName, model);
+            console.log(request.url)
+
             if (!checkObjHasRequiredPaths(request.body, models[model].schema.requiredPaths())) {
                 response.status(400).json({
                     error: "Create request missing parameters. You must implement all model parameters. If the parameter is an array, please at least include an empty array.",
@@ -66,8 +72,9 @@ function register_api_routes(app) {
                     request: request.body});
                 return;
             }
-
+            console.log("Mongoose call!");
             models[model].create(request.body, function(error, results) {
+                console.log(error, results);
                 respondWithJson(error, results, response,
                     {model: model, action: "POST", data: request.body});
             });
