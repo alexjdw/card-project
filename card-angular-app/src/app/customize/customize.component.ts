@@ -15,9 +15,18 @@ import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
     }]
 })
 export class CustomizeComponent implements OnInit {
-    creator: string;
+    creator_id: string;
     card_data: any;
     form_data: FormGroup;
+    show_modal: boolean = false;
+    register_is_loading = false;
+    regform: object = {
+        email: '',
+        password: '',
+        confirm: '',
+        errors: {}
+    };
+
     constructor(
         private _httpService: HttpService,
         // private ngFlashMessageService: NgFlashMessageService,
@@ -35,14 +44,19 @@ export class CustomizeComponent implements OnInit {
             this.card_data = data;
             console.log(data);
         });
+
+        this.regform['email'] = '';
+        this.regform['password'] = '';
+        this.regform['confirm'] = '';
+        this.regform['errors'] = {};
     }
 
     saveCard(event) {
         console.log(event);
-        // if (!this.creator) {
-        //     this.promptForCreator();
-        //     return;
-        // }
+        if (!this.creator_id) {
+            this.promptWithRegform();
+            return;
+        }
         var user_values: string[] = [];
         for (let item of this.card_data.custom_inputs) {
             console.log(item);
@@ -51,7 +65,7 @@ export class CustomizeComponent implements OnInit {
             }
         }
         var card = {
-            creator: this.creator || 'Left Blank',
+            creator: this.creator_id || 'Left Blank',
             template: this.card_data._id,
             sent: false,
             form_data: user_values,
@@ -63,8 +77,39 @@ export class CustomizeComponent implements OnInit {
         });
     }
 
-    promptForCreator() {
-        console.log("#TODO")
+    promptWithRegform() {
+        this.show_modal = true;
+    }
+
+    validateUser(event) {
+        //Validate
+        var strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+        var emailRegex = new RegExp("^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$");
+
+        this.regform['errors'] = {};
+        if (this.regform['password'] != this.regform['confirm']) {
+            this.regform['errors']['confirm'] = "The password field should match the confirmation field.";
+        }
+        if (!strongRegex.test(this.regform['password'])) {
+            this.regform['errors']['password'] = "Your password isn't strong enough. Please ensure to add an uppercase character, number, and a special character: !@#$%^*. The minimum length is 8 characters total.";
+        }
+        if (!emailRegex.test(this.regform['email'])) {
+            this.regform['errors']['email'] = "Please enter a valid email.";
+        }
+    }
+
+    registerUser(event) {
+        if (Object.keys(this.regform['errors']).length) {
+            // Form still has errors.
+            return;
+        }
+        this._httpService.createUser({
+            email: this.regform['email'],
+            password: this.regform['password'],
+            confirm: this.regform['confirm']
+        }).subscribe(user => {
+            this.creator_id = user['id'];
+        });
     }
 }
 // CardSchema = new mongoose.Schema({

@@ -21,4 +21,8 @@ export class HttpService {
     createCard(card) {
         return this._http.post('/api/cards', card);
     }
+
+    createUser(user) {
+        return this._http.post('/api/users', user)
+    }
 }
