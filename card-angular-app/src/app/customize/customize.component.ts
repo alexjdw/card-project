@@ -39,24 +39,28 @@ export class CustomizeComponent implements OnInit {
 
     saveCard(event) {
         console.log(event);
-        if (!this.creator) {
-            this.promptForCreator();
-            return;
-        }
+        // if (!this.creator) {
+        //     this.promptForCreator();
+        //     return;
+        // }
         var user_values: string[] = [];
         for (let item of this.card_data.custom_inputs) {
             console.log(item);
-            // if (item.value) {
-            //     user_values.push(item.value);
-            // }
+            if (item.value) {
+                user_values.push(item.value);
+            }
         }
         var card = {
-            creator: this.creator,
+            creator: this.creator || 'Left Blank',
             template: this.card_data._id,
             sent: false,
             form_data: user_values,
             recipient_emails: []
         }
+        console.log(card);
+        this._httpService.createCard(card).subscribe(data => {
+            console.log(data);
+        });
     }
 
     promptForCreator() {

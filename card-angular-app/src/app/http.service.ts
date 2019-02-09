@@ -18,7 +18,7 @@ export class HttpService {
         return this._http.post('/file/upload', file);
     }
 
-    saveCard(card) {
+    createCard(card) {
         return this._http.post('/api/cards', card);
     }
 }
