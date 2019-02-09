@@ -1,5 +1,3 @@
-<link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
-
 <div class="create-form-wrapper d-flex flex-column">
   <!-- <app-navbar></app-navbar> -->
 
@@ -113,22 +111,22 @@
             <div class="movable-input-grid">
               <ng-container *ngFor="let cinput of template.custom_inputs; let i = index;">
                 <!-- Uploaded Floating Image option-->
-                <div *ngIf="cinput.type === 'image'" class="movable movable-image" cdkDrag cdkDragBoundary=".movable-input-grid" (cdkDragMoved)="onMove($event, i)" (cdkDragEnded)="onDrop($event, i)">
+                <div *ngIf="cinput.type === 'image'" class="movable subimage" cdkDrag cdkDragBoundary=".movable-input-grid" (cdkDragMoved)="onMove($event, i)" (cdkDragEnded)="onDrop($event, i)">
                   <img class="movable-image" src="{{ cinput.options.img.src }}" width="{{ cinput.options.img.width }}" height="{{ cinput.options.img.height }}">
                 </div>
 
                 <!-- Textarea option -->
-                <div *ngIf="cinput.type === 'textarea'" class="movable movable-personal-message" cdkDrag cdkDragBoundary=".movable-input-grid" (cdkDragMoved)="onMove($event, i)" (cdkDragEnded)="onDrop($event, i)">
+                <div *ngIf="cinput.type === 'textarea'" class="movable personal-message" cdkDrag cdkDragBoundary=".movable-input-grid" (cdkDragMoved)="onMove($event, i)" (cdkDragEnded)="onDrop($event, i)">
                   <p class="fake-textarea">This text is just a placeholder. You'll be able to edit it once the template is complete. <br><br> <em>Painting should do one thing. It should put happiness in your heart. Fluff that up. And just raise cain. Isn't that fantastic that you can create an almighty tree that fast? It's important to me that you're happy. Nothing wrong with washing your brush. ~ Bob Ross</em></p>
                 </div>
 
                 <!-- Signature option -->
-                <div *ngIf="cinput.type === 'signature'" class="movable movable-signature-field" cdkDrag cdkDragBoundary=".movable-input-grid" (cdkDragMoved)="onMove($event, i)" (cdkDragEnded)="onDrop($event, i)">
+                <div *ngIf="cinput.type === 'signature'" class="movable signature" cdkDrag cdkDragBoundary=".movable-input-grid" (cdkDragMoved)="onMove($event, i)" (cdkDragEnded)="onDrop($event, i)">
                   Signature
                 </div>
                 
                 <!-- Banner option -->
-                <div *ngIf="cinput.type === 'banner'" class="movable movable-banner" cdkDrag cdkDragBoundary=".movable-input-grid" (cdkDragMoved)="onMove($event, i)" (cdkDragEnded)="onDrop($event, i)">
+                <div *ngIf="cinput.type === 'banner'" class="movable banner" cdkDrag cdkDragBoundary=".movable-input-grid" (cdkDragMoved)="onMove($event, i)" (cdkDragEnded)="onDrop($event, i)">
                   <h3>{{ cinput.options.content }}</h3>
                 </div>
               </ng-container>

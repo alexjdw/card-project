@@ -52,6 +52,7 @@ import { CreateComponent } from './create/create.component';
 import { FriendshipComponent } from './friendship/friendship.component';
 import { CustomizeComponent } from './customize/customize.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { CardPreviewComponent } from './card-preview/card-preview.component';
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
@@ -64,7 +65,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     CreateComponent,
     FriendshipComponent,
     CustomizeComponent,
-    NavbarComponent
+    NavbarComponent,
+    CardPreviewComponent
   ],
   imports: [
     BrowserModule,

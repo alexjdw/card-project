@@ -1,0 +1,31 @@
+<mat-spinner *ngIf="!data.bg_image_url"></mat-spinner>
+
+<ng-container *ngIf="data.bg_image_url">
+  <div class="card-preview-wrapper m-auto" [ngStyle]="{'width': data.width, 'height': data.height}">
+    <img width="{{data.width}}" height="{{data.height}}" src="{{ data.bg_image_url }}">
+    <div class="custom-elements-overlay">
+      <ng-container *ngFor="let cinput of data.custom_inputs; let i = index;">
+        <div class="p-absolute subimage" *ngIf="cinput.type === 'image'" 
+          [style.top]="cinput.top + 'px'"
+          [style.left]="cinput.left + 'px'">
+          <img src="{{cinput.options.src}}" width="{{cinput.options.width}}" height="{{cinput.options.height}}">
+        </div>
+        <div class="p-absolute banner" *ngIf="cinput.type === 'banner'"
+          [style.top]="cinput.top + 'px'"
+          [style.left]="cinput.left + 'px'">
+          {{ cinput.options.content }}
+        </div>
+        <div class="p-absolute signature" *ngIf="cinput.type === 'signature'"
+          [style.top]="cinput.top + 'px'"
+          [style.left]="cinput.left + 'px'">
+          {{ cinput.value || "Your Signature"}}
+        </div>
+        <div class="p-absolute personal-message" *ngIf="cinput.type === 'textarea'"
+          [style.top]="cinput.top + 'px'"
+          [style.left]="cinput.left + 'px'">
+          {{ cinput.value || "Write your personal message on the form to the right. It will appear in this area." }}
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</ng-container>

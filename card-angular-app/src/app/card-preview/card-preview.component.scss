@@ -1,0 +1,16 @@
+.card-preview-wrapper {
+  position: relative;
+  max-width: 1000px;
+  max-height: 1000px;
+}
+
+.custom-elements-overlay {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.p-absolute {
+  position: absolute;
+}

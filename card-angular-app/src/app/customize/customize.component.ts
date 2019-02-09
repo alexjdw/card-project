@@ -7,40 +7,81 @@ import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 // import { EventEmitter } from 'events';
 
 @Component({
-  selector: 'app-customize',
-  templateUrl: './customize.component.html',
-  styleUrls: ['./customize.component.scss'],
-  providers: [{
-    provide: STEPPER_GLOBAL_OPTIONS, useValue: { showError: true }
-  }]
+    selector: 'app-customize',
+    templateUrl: './customize.component.html',
+    styleUrls: ['./customize.component.scss'],
+    providers: [{
+        provide: STEPPER_GLOBAL_OPTIONS, useValue: { showError: true }
+    }]
 })
 export class CustomizeComponent implements OnInit {
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
-  @Input() childInputVar:any;
-  @Output() childOutputVar = new EventEmitter();
+    creator: string;
+    card_data: any;
+    form_data: FormGroup;
+    constructor(
+        private _httpService: HttpService,
+        // private ngFlashMessageService: NgFlashMessageService,
+        private _route: ActivatedRoute,
+        private _router: Router,
+        private _formBuilder: FormBuilder) { }
 
-  constructor(
-    private _httpService: HttpService,
-    // private ngFlashMessageService: NgFlashMessageService,
-    private _route: ActivatedRoute,
-    private _router: Router,
-    private _formBuilder: FormBuilder) { }
+    ngOnInit() {
+        this.card_data = {};
+        // test id: '5c5a6408406cce302cff92a0'
+        this._httpService.getTemplate(this._route.snapshot.params['id']).subscribe(data => {
+            for (let item of data['custom_inputs']) {
+                item['value'] = '';
+            }
+            this.card_data = data;
+            console.log(data);
+        });
+    }
 
-  ngOnInit() {
-    this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
-    });
-    this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
-    });
-  }
-  sendBackToBirthday(){
-    this.childOutputVar.emit(true);
+    saveCard(event) {
+        console.log(event);
+        if (!this.creator) {
+            this.promptForCreator();
+            return;
+        }
+        var user_values: string[] = [];
+        for (let item of this.card_data.custom_inputs) {
+            console.log(item);
+            // if (item.value) {
+            //     user_values.push(item.value);
+            // }
+        }
+        var card = {
+            creator: this.creator,
+            template: this.card_data._id,
+            sent: false,
+            form_data: user_values,
+            recipient_emails: []
+        }
+    }
 
-  }
-  onSubmitEdit(){
-    this.sendBackToBirthday();
-  }
-
+    promptForCreator() {
+        console.log("#TODO")
+    }
 }
+// CardSchema = new mongoose.Schema({
+//    creator: {
+//        type: String,
+//        required: true
+//    },
+//    template: {
+//        type: mongoose.Schema.Types.ObjectId,
+//        required: true
+//    },
+//    sent: {
+//        type: Boolean,
+//        default: false
+//    },
+//    form_data: {
+//        type: Object,
+//        required: true
+//    },
+//    recipient_emails: {
+//        type: [String]
+//    }
+// });
+

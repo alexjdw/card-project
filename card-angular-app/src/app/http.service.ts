@@ -7,12 +7,8 @@ import { HttpClient } from '@angular/common/http';
 export class HttpService {
     constructor(private _http: HttpClient) { }
 
-    getAllCards(){
-        
-    }
-
-    getCardTemplate(template_id) {
-        return this._http.get('/api/templates' + template_id);
+    getTemplate(template_id) {
+        return this._http.get('/api/templates/' + template_id);
     }
     createTemplate(form_data) {
         console.log("Creating...");
@@ -20,5 +16,9 @@ export class HttpService {
     }
     uploadTemplateFile(file) {
         return this._http.post('/file/upload', file);
+    }
+
+    saveCard(card) {
+        return this._http.post('/api/cards', card);
     }
 }

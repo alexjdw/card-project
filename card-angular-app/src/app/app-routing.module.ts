@@ -6,10 +6,12 @@ import { BirthdayComponent } from './birthday/birthday.component';
 import { ChristmasComponent } from './christmas/christmas.component';
 import { CreateComponent } from './create/create.component';
 import { FriendshipComponent } from './friendship/friendship.component';
+import { CustomizeComponent } from './customize/customize.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent },
-  {path: 'cards/create', component:CreateComponent},
+  {path: 'cards/create', component: CreateComponent},
+  {path: 'cards/customize/:id', component: CustomizeComponent},
   {path: 'cards/collection', component: CollectionComponent},
   {path: 'cards/collection/birthday', component: BirthdayComponent},
   {path: 'cards/collection/christmas', component: ChristmasComponent},

@@ -39,15 +39,15 @@ export class BirthdayComponent implements OnInit {
   //     console.log(data);
   //     this.listOfCards = data;
   //   })
-  // }
-  onClickTemplate(){
-    this.showEditFormBool = true;
-    // this._router.navigate(['/cards']);
-  }
-  receivedFromCustomize(event){
-    if(event === true){
-      this.showEditFormBool = false;
-    }
-  }
+//   // }
+//   onClickTemplate(){
+//     this.showEditFormBool = true;
+//     // this._router.navigate(['/cards']);
+//   }
+//   receivedFromCustomize(event){
+//     if(event === true){
+//       this.showEditFormBool = false;
+//     }
+//   }
 
 }

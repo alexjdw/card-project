@@ -17,8 +17,8 @@ import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 
 export class HomeComponent implements OnInit {
   email = new FormControl('', [Validators.required, Validators.email]);
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
+//   firstFormGroup: FormGroup;
+//   secondFormGroup: FormGroup;
   constructor(
     private _httpService: HttpService,
     // private ngFlashMessageService: NgFlashMessageService,
@@ -27,12 +27,12 @@ export class HomeComponent implements OnInit {
     private _formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
-    });
-    this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
-    });
+    // this.firstFormGroup = this._formBuilder.group({
+    //   firstCtrl: ['', Validators.required]
+    // });
+    // this.secondFormGroup = this._formBuilder.group({
+    //   secondCtrl: ['', Validators.required]
+    // });
   }
   getErrorMessage() {
     return this.email.hasError('required') ? 'You must enter a value' :

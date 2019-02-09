@@ -185,6 +185,7 @@ export class CreateComponent implements OnInit {
                 cust_input_data['options'] = { 
                     height: inp.options['img']['height'],
                     width: inp.options['img']['width'],
+                    src: inp.options['img']['src']
                 }
             }
             if (inp.type == 'banner') {

@@ -66,10 +66,7 @@ CardSchema = new mongoose.Schema({
        type: Boolean,
        default: false
    },
-   form_data: {
-       type: Object,
-       required: true
-   },
+   form_data: [String],
    recipient_emails: {
        type: [String]
    }

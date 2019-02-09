@@ -67,3 +67,30 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   background-size: cover;
   background-position: center;
 }
+
+
+.banner {
+  min-width: 8rem !important;
+  max-width: 70rem !important;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.subimage {
+}
+
+.personal-message {
+  width: 32rem !important;
+  height: 12rem !important;
+  text-align: center;
+  padding: 1rem;
+}
+
+.signature, .sig-font {
+  font-family: 'Dancing Script', cursive;
+  border-radius: 8px;
+  font-size: 4rem;
+  line-height: 100%;
+  text-align: center;
+}

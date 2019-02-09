@@ -44,36 +44,7 @@ label {
   max-height: 1000px;
 }
 
-.movable-banner {
-  min-width: 8rem !important;
-  max-width: 70rem !important;
-  padding: 1rem;
-  border-radius: 8px;
-  text-align: center;
-}
-
-.movable-image {
-  // width: 20rem !important;
-}
-
-.movable-personal-message {
-  width: 32rem !important;
-  height: 12rem !important;
-  text-align: center;
-  padding: 1rem;
-}
-
-.movable-signature-field, .sig-font {
-  font-family: 'Dancing Script', cursive;
-}
-
 .movable-signature-field {
-  width: 20rem;
-  height: 5rem;
-  border-radius: 8px;
-  font-size: 4rem;
-  line-height: 100%;
-  text-align: center;
 }
 
 .mat-form-field {
