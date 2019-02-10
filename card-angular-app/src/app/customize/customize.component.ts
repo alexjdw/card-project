@@ -26,7 +26,6 @@ export class CustomizeComponent implements OnInit {
         confirm: '',
         errors: {}
     };
-
     constructor(
         private _httpService: HttpService,
         // private ngFlashMessageService: NgFlashMessageService,

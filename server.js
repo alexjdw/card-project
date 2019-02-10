@@ -20,6 +20,7 @@ app.use(session({
     saveUninitialized: true,
     cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 } // 30 days
 }));
+
 var flash = require('express-flash');
 
 app.use(express.static(path.join(__dirname, '/card-angular-app/dist/card-angular-app')));

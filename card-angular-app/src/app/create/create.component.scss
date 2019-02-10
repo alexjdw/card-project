@@ -1,3 +1,20 @@
+.step-form {
+  max-width: 44rem;
+}
+
+.nav-item {
+  font-weight: 600;
+  padding: .5rem;
+  border: 1px solid lightgrey;
+  border-bottom: 0;
+  border-radius: .25rem;
+  margin-right: -1px;
+  transition: background-color .2s ease-in-out;
+  &.active {
+    background-color: lightgrey;
+  }
+}
+
 .img-small-choice {
   display: inline-block;
   width: 16rem;
@@ -19,26 +36,16 @@
 label {
   display: block;
 }
+
 .create-form-wrapper {
-  position: absolute;
-  top: 0;
-  z-index: 0;
-  padding: 0 1rem;
   background-image: url(/assets/img/wall.jpg);
   background-size: cover;
   height: 100%;
   width: 100%;
 }
 
-.create-form-wrapper .mat-step {
-  flex: 2;
-  min-width: 84rem;
-}
-.create-form-wrapper div {
-  color: #fff;
-}
-
 .template-editor {
+  min-width: 84rem;
   position: relative;
   max-width: 1000px;
   max-height: 1000px;

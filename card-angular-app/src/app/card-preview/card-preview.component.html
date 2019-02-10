@@ -1,4 +1,4 @@
-<mat-spinner *ngIf="!data.bg_image_url"></mat-spinner>
+<div class="spinner-border" *ngIf="!data.bg_image_url"></div>
 
 <ng-container *ngIf="data.bg_image_url">
   <div class="card-preview-wrapper m-auto" [ngStyle]="{'width': data.width, 'height': data.height}">

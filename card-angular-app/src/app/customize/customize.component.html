@@ -11,18 +11,14 @@
         <ng-container *ngFor="let cinput of card_data.custom_inputs; let idx = index;">
           <ng-container *ngIf="cinput.type === 'textarea'">
             <label>Personal Message</label>
-            <mat-form-field class="w-100">
-              <textarea matInput [(ngModel)]="cinput.value" name="{{'sig' + idx }}" placeholder="Add a personal message here."></textarea>
-            </mat-form-field>
+            <textarea class="form-control w-100" [(ngModel)]="cinput.value" name="{{'sig' + idx }}" placeholder="Add a personal message here."></textarea>
           </ng-container>
           <ng-container *ngIf="cinput.type === 'signature'">
             <label>Signature</label>
-            <mat-form-field class="w-100">
-              <input matInput [(ngModel)]="cinput.value" name="{{'sig' + idx }}" type="text" placeholder="Enter your name for the signature.">
-            </mat-form-field>
+            <input class="form-control w-100" [(ngModel)]="cinput.value" name="{{'sig' + idx }}" type="text" placeholder="Enter your name for the signature.">
           </ng-container>
         </ng-container>
-        <button mat-raised-button>Save & Send!</button>
+        <button class="btn btn-primary">Save & Send!</button>
       </form>
     </div>
   </div>

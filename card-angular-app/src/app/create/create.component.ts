@@ -43,6 +43,7 @@ export class CreateComponent implements OnInit {
     latestUploadedImg: HTMLImageElement;
     backgroundOptions: HTMLImageElement[];
     form: any;
+    stepper: number = 1;
 
     // For drag events
     topdelta: number = 0;
@@ -76,8 +77,8 @@ export class CreateComponent implements OnInit {
             this.latestUploadedImg.src = '/assets/img/example-image.svg';
         }
 
-    tabChange(event) {
-        this.selectedTab = event.tab.textLabel;
+    tabChange(tab) {
+        this.selectedTab = tab;
     }
 
     setTemplateBackground(img) {
@@ -117,6 +118,12 @@ export class CreateComponent implements OnInit {
                 new CardTemplateCustomInput('image', {img: img})
                 );
         }
+    }
+
+    toggleStep(step: number) {
+        if (this.stepper==step) {
+            this.stepper=0;
+        } else this.stepper = step;
     }
 
     uploadFileOnChange(event, target) {
