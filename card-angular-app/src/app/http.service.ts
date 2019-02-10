@@ -23,6 +23,6 @@ export class HttpService {
     }
 
     createUser(user) {
-        return this._http.post('/api/users', user)
+        return this._http.post('/api/users', user);
     }
 }

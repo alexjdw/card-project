@@ -22,7 +22,7 @@ function respondWithJson(error, results, response, context) {
             console.log("This was the context for the error: ", context)
             response.status(500).json({ error: "Database call failed.", context: context })
         } else {
-            response.status(500).json({ error: "It's broke" })
+            response.status(500).json({ error: "It broke! No context was provided." })
         };
     } else {
         response.json(results);

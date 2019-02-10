@@ -106,6 +106,5 @@ module.exports = {
        Note: the dictionary key is the API route. So bikes: mongoose.model('SuperDuperBikes') results in an api at /api/bikes */
        templates: mongoose.model('CardTemplate'),
        cards: mongoose.model('Card'),
-       users: mongoose.model('User')
    }
 }
