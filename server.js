@@ -5,7 +5,6 @@ var bodyParser = require('body-parser');
 var fileUpload = require('express-fileupload');  // https://www.npmjs.com/package/express-fileupload
 var session = require('express-session');
 
-
 app.use(bodyParser.json());
 
 // Maximum file size of 10MB, server will cancel files over 10MB.
@@ -19,7 +18,7 @@ app.use(session({
     secret: 'keyboardkitteh',
     resave: false,
     saveUninitialized: true,
-    cookie: { maxAge: 60000 }
+    cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 } // 30 days
 }));
 var flash = require('express-flash');
 
